@@ -1,0 +1,132 @@
+[2025-07-02 16:05:35.758 INF] DiagnosticLogger.Initialize(DiagnosticLogger:56) (1): Logging system initialized successfully
+[2025-07-02 16:05:35.780 INF] DiagnosticLogger.Initialize(DiagnosticLogger:57) (1): Log file: C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Browser\bin\Debug\net9.0-windows\Logs\NoorAhlulBayt.Browser_20250702_160535.log
+[2025-07-02 16:05:35.780 INF] DiagnosticLogger.Initialize(DiagnosticLogger:58) (1): Application: NoorAhlulBayt.Browser
+[2025-07-02 16:05:35.780 INF] DiagnosticLogger.Initialize(DiagnosticLogger:59) (1): Process ID: 7612
+[2025-07-02 16:05:35.781 INF] DiagnosticLogger.Initialize(DiagnosticLogger:60) (1): Thread ID: 1
+[2025-07-02 16:05:35.781 INF] DiagnosticLogger.Initialize(DiagnosticLogger:61) (1): Working Directory: C:\Users\Administrator\Documents\Noor-Ahlyebait-PC
+[2025-07-02 16:05:35.781 INF] DiagnosticLogger.Initialize(DiagnosticLogger:62) (1): Base Directory: C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Browser\bin\Debug\net9.0-windows\
+[2025-07-02 16:05:36.228 INF] DiagnosticLogger.CreateDebugConsole(DiagnosticLogger:103) (1): Debug console window created successfully
+[2025-07-02 16:05:36.230 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Application starting - Arguments: 
+[2025-07-02 16:05:36.230 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: CLR Version - 9.0.6
+[2025-07-02 16:05:36.230 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: OS Version - Microsoft Windows NT 10.0.20348.0
+[2025-07-02 16:05:36.233 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Machine Name - COPY-OF-VM-2022
+[2025-07-02 16:05:36.235 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: User Name - Administrator
+[2025-07-02 16:05:36.235 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Is 64-bit Process - True
+[2025-07-02 16:05:36.235 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Is 64-bit OS - True
+[2025-07-02 16:05:36.237 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Exception handlers registered
+[2025-07-02 16:05:36.237 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Base startup completed
+[2025-07-02 16:05:36.244 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: MainWindow constructor started
+[2025-07-02 16:05:36.247 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Constructor - Initializing MainWindow
+[2025-07-02 16:05:36.249 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Calling InitializeComponent
+[2025-07-02 16:05:36.536 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: InitializeComponent completed
+[2025-07-02 16:05:36.541 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Window Properties - Title: Noor-e-AhlulBayt Islamic Browser, Width: 1200, Height: 800
+[2025-07-02 16:05:36.542 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Window State - WindowState: Normal, Visibility: Collapsed
+[2025-07-02 16:05:36.542 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Initializing HttpClient
+[2025-07-02 16:05:36.544 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: HttpClient initialized
+[2025-07-02 16:05:36.544 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Configuring database context
+[2025-07-02 16:05:36.631 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Database context configured - Connection: Data Source=noor_browser.db
+[2025-07-02 16:05:36.632 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Initializing ContentFilterService
+[2025-07-02 16:05:36.644 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: ContentFilterService initialized - NSFW Model: Loaded
+[2025-07-02 16:05:36.644 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Initializing PrayerTimeService
+[2025-07-02 16:05:36.644 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: PrayerTimeService initialized
+[2025-07-02 16:05:36.646 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Initializing WebViewContentFilterService
+[2025-07-02 16:05:36.646 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: WebViewContentFilterService initialized
+[2025-07-02 16:05:36.646 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Setting up prayer timer
+[2025-07-02 16:05:36.649 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Prayer timer started - Interval: 60 seconds
+[2025-07-02 16:05:36.650 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Registering Loaded event handler
+[2025-07-02 16:05:36.652 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: MainWindow constructor completed successfully
+[2025-07-02 16:05:36.693 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: LocationChanged - New location: 168, 12
+[2025-07-02 16:05:36.696 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: IsVisibleChanged - Visible: True
+[2025-07-02 16:05:37.001 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: SizeChanged - New size: 1200x800
+[2025-07-02 16:05:37.015 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Activated - Window activated
+[2025-07-02 16:05:37.039 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Loaded - MainWindow loaded event triggered
+[2025-07-02 16:05:37.041 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Window State - ActualWidth: 1200, ActualHeight: 800
+[2025-07-02 16:05:37.042 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Window State - IsVisible: True, IsActive: True
+[2025-07-02 16:05:37.042 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Window State - WindowState: Normal, Topmost: False
+[2025-07-02 16:05:37.043 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: InitializeBrowser started
+[2025-07-02 16:05:37.044 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Creating database if needed
+[2025-07-02 16:05:37.466 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Database creation completed
+[2025-07-02 16:05:37.481 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Loading profile and settings
+[2025-07-02 16:05:37.835 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Profile and settings loaded
+[2025-07-02 16:05:37.839 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Checking WebView2 availability
+[2025-07-02 16:05:37.843 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 version available - 138.0.3351.65
+[2025-07-02 16:05:37.843 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Initializing WebView2 core
+[2025-07-02 16:05:37.843 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 control state - IsLoaded: True, Visibility: Visible
+[2025-07-02 16:05:38.606 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 core initialized
+[2025-07-02 16:05:38.719 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 environment - BrowserVersionString: 138.0.3351.65
+[2025-07-02 16:05:38.724 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 environment - UserDataFolder: C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Browser\bin\Debug\net9.0-windows\NoorAhlulBayt.Browser.exe.WebView2
+[2025-07-02 16:05:38.727 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Configuring WebView2 settings
+[2025-07-02 16:05:38.728 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Starting WebView2 configuration
+[2025-07-02 16:05:38.730 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Retrieved WebView2 settings
+[2025-07-02 16:05:38.730 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Configuring security settings
+[2025-07-02 16:05:38.731 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Security settings configured
+[2025-07-02 16:05:38.732 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Configuring content settings
+[2025-07-02 16:05:38.732 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Content settings configured
+[2025-07-02 16:05:38.733 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Setting up content filtering
+[2025-07-02 16:05:38.734 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Content filtering configured
+[2025-07-02 16:05:38.736 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Initializing advanced content filtering
+[2025-07-02 16:05:38.738 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Advanced content filtering initialized successfully
+[2025-07-02 16:05:38.738 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Skipping DOMContentLoaded event to prevent styling interference
+[2025-07-02 16:05:38.739 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Setting up new window handling
+[2025-07-02 16:05:38.755 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - WebView2 configuration completed successfully
+[2025-07-02 16:05:38.755 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 settings configured
+[2025-07-02 16:05:38.756 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Navigating to home page - https://www.google.com
+[2025-07-02 16:05:38.858 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Updating prayer time display
+[2025-07-02 16:05:38.860 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Prayer time display updated
+[2025-07-02 16:05:38.861 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Updating status bar
+[2025-07-02 16:05:38.862 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Status bar updated
+[2025-07-02 16:05:38.939 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: InitializeBrowser completed successfully
+[2025-07-02 16:05:38.942 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Loaded - MainWindow loaded event completed successfully
+[2025-07-02 16:05:38.944 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/
+[2025-07-02 16:05:38.945 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 16:05:38.945 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 16:05:38.960 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 16:05:38.963 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 16:05:38.964 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 16:05:39.872 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 16:05:39.914 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/
+[2025-07-02 16:05:39.915 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 16:05:39.916 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 16:05:39.916 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 16:05:39.916 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 16:05:39.916 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: False, Forward: False
+[2025-07-02 16:05:39.917 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 16:05:39.917 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 16:05:40.044 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 16:05:41.078 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 16:05:41.079 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 16:05:54.246 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.pornpics.de/
+[2025-07-02 16:05:54.265 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 16:05:54.267 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 16:05:54.268 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 16:05:54.269 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Navigation blocked - hardcoded blacklist: https://www.pornpics.de/
+[2025-07-02 16:05:54.276 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Resource blocked - hardcoded blacklist: https://www.pornpics.de/
+[2025-07-02 16:05:54.292 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: False
+[2025-07-02 16:05:54.294 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/
+[2025-07-02 16:05:54.294 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 16:05:54.296 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 16:05:54.298 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation failed - WebErrorStatus: OperationCanceled
+[2025-07-02 16:05:54.298 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation blocked by content filter - showing block overlay instead of error message
+[2025-07-02 16:05:54.299 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 16:05:54.300 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: data:text/html;charset=utf-8;base64,CjwhRE9DVFlQRSBodG1sPgo8aHRtbD4KPGhlYWQ+CiAgICA8dGl0bGU+Q29udGVudCBCbG9ja2VkIC0gTm9vciBBaGx1bEJheXQgQnJvd3NlcjwvdGl0bGU+CiAgICA8c3R5bGU+CiAgICAgICAgYm9keSB7CiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAnU2Vnb2UgVUknLCBUYWhvbWEsIEdlbmV2YSwgVmVyZGFuYSwgc2Fucy1zZXJpZjsKICAgICAgICAgICAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KDEzNWRlZywgIzY2N2VlYSAwJSwgIzc2NGJhMiAxMDAlKTsKICAgICAgICAgICAgbWFyZ2luOiAwOwogICAgICAgICAgICBwYWRkaW5nOiAwOwogICAgICAgICAgICBkaXNwbGF5OiBmbGV4OwogICAgICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICAgICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgICAgICAgICAgbWluLWhlaWdodDogMTAwdmg7CiAgICAgICAgICAgIGNvbG9yOiB3aGl0ZTsKICAgICAgICB9CiAgICAgICAgLmNvbnRhaW5lciB7CiAgICAgICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgICAgICAgICAgYmFja2dyb3VuZDogcmdiYSgyNTUsIDI1NSwgMjU1LCAwLjEpOwogICAgICAgICAgICBwYWRkaW5nOiA0MHB4OwogICAgICAgICAgICBib3JkZXItcmFkaXVzOiAxNXB4OwogICAgICAgICAgICBiYWNrZHJvcC1maWx0ZXI6IGJsdXIoMTBweCk7CiAgICAgICAgICAgIGJveC1zaGFkb3c6IDAgOHB4IDMycHggcmdiYSgwLCAwLCAwLCAwLjEpOwogICAgICAgICAgICBtYXgtd2lkdGg6IDUwMHB4OwogICAgICAgIH0KICAgICAgICAuaWNvbiB7CiAgICAgICAgICAgIGZvbnQtc2l6ZTogNjRweDsKICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogMjBweDsKICAgICAgICB9CiAgICAgICAgaDEgewogICAgICAgICAgICBtYXJnaW46IDAgMCAyMHB4IDA7CiAgICAgICAgICAgIGZvbnQtc2l6ZTogMjhweDsKICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDMwMDsKICAgICAgICB9CiAgICAgICAgcCB7CiAgICAgICAgICAgIG1hcmdpbjogMCAwIDMwcHggMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxNnB4OwogICAgICAgICAgICBsaW5lLWhlaWdodDogMS42OwogICAgICAgICAgICBvcGFjaXR5OiAwLjk7CiAgICAgICAgfQogICAgICAgIC5tZXNzYWdlIHsKICAgICAgICAgICAgYmFja2dyb3VuZDogcmdiYSgyNTUsIDI1NSwgMjU1LCAwLjEpOwogICAgICAgICAgICBwYWRkaW5nOiAxNXB4OwogICAgICAgICAgICBib3JkZXItcmFkaXVzOiA4cHg7CiAgICAgICAgICAgIG1hcmdpbjogMjBweCAwOwogICAgICAgICAgICBmb250LWZhbWlseTogbW9ub3NwYWNlOwogICAgICAgICAgICBmb250LXNpemU6IDE0cHg7CiAgICAgICAgfQogICAgICAgIGJ1dHRvbiB7CiAgICAgICAgICAgIGJhY2tncm91bmQ6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMC4yKTsKICAgICAgICAgICAgYm9yZGVyOiAxcHggc29saWQgcmdiYSgyNTUsIDI1NSwgMjU1LCAwLjMpOwogICAgICAgICAgICBjb2xvcjogd2hpdGU7CiAgICAgICAgICAgIHBhZGRpbmc6IDEycHggMjRweDsKICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogNnB4OwogICAgICAgICAgICBjdXJzb3I6IHBvaW50ZXI7CiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTZweDsKICAgICAgICAgICAgdHJhbnNpdGlvbjogYWxsIDAuM3MgZWFzZTsKICAgICAgICB9CiAgICAgICAgYnV0dG9uOmhvdmVyIHsKICAgICAgICAgICAgYmFja2dyb3VuZDogcmdiYSgyNTUsIDI1NSwgMjU1LCAwLjMpOwogICAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTJweCk7CiAgICAgICAgfQogICAgPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KICAgIDxkaXYgY2xhc3M9J2NvbnRhaW5lcic+CiAgICAgICAgPGRpdiBjbGFzcz0naWNvbic+8J+boe+4jzwvZGl2PgogICAgICAgIDxoMT5Db250ZW50IEJsb2NrZWQ8L2gxPgogICAgICAgIDxwPlRoaXMgY29udGVudCBoYXMgYmVlbiBibG9ja2VkIGJ5IHRoZSBJc2xhbWljIGZhbWlseS1zYWZlIGJyb3dzZXIgdG8gcHJvdGVjdCB5b3UgYW5kIHlvdXIgZmFtaWx5LjwvcD4KICAgICAgICA8ZGl2IGNsYXNzPSdtZXNzYWdlJz5Eb21haW4gYmxvY2tlZDogRG9tYWluIGNvbnRhaW5zIGluYXBwcm9wcmlhdGUgY29udGVudCBwYXR0ZXJuOiBwb3JuPC9kaXY+CiAgICAgICAgPGJ1dHRvbiBvbmNsaWNrPSdoaXN0b3J5LmJhY2soKSc+R28gQmFjazwvYnV0dG9uPgogICAgPC9kaXY+CjwvYm9keT4KPC9odG1sPg==
+[2025-07-02 16:05:54.301 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: False, IsRedirected: False
+[2025-07-02 16:05:54.302 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 16:05:54.313 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 16:05:54.325 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 16:05:54.325 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 16:05:54.522 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 16:05:54.530 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: about:blank
+[2025-07-02 16:05:54.530 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Content Blocked - Noor AhlulBayt Browser
+[2025-07-02 16:05:54.531 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 16:05:54.531 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 16:05:54.531 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 16:05:54.541 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 16:05:54.547 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 16:05:54.547 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 16:05:54.561 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 16:05:55.565 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 16:05:55.567 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 16:06:08.413 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: IsVisibleChanged - Visible: False
+[2025-07-02 16:06:08.421 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Deactivated - Window deactivated
+[2025-07-02 16:06:08.428 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Application exiting - Exit code: 0
+[2025-07-02 16:06:08.429 INF] DiagnosticLogger.Shutdown(DiagnosticLogger:241) (1): Shutting down logging system

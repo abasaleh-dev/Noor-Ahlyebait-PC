@@ -1,0 +1,826 @@
+[2025-07-02 14:10:37.857 INF] DiagnosticLogger.Initialize(DiagnosticLogger:56) (1): Logging system initialized successfully
+[2025-07-02 14:10:37.878 INF] DiagnosticLogger.Initialize(DiagnosticLogger:57) (1): Log file: C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Browser\bin\Debug\net9.0-windows\Logs\NoorAhlulBayt.Browser_20250702_141037.log
+[2025-07-02 14:10:37.878 INF] DiagnosticLogger.Initialize(DiagnosticLogger:58) (1): Application: NoorAhlulBayt.Browser
+[2025-07-02 14:10:37.878 INF] DiagnosticLogger.Initialize(DiagnosticLogger:59) (1): Process ID: 13040
+[2025-07-02 14:10:37.879 INF] DiagnosticLogger.Initialize(DiagnosticLogger:60) (1): Thread ID: 1
+[2025-07-02 14:10:37.879 INF] DiagnosticLogger.Initialize(DiagnosticLogger:61) (1): Working Directory: C:\Users\Administrator\Documents\Noor-Ahlyebait-PC
+[2025-07-02 14:10:37.879 INF] DiagnosticLogger.Initialize(DiagnosticLogger:62) (1): Base Directory: C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Browser\bin\Debug\net9.0-windows\
+[2025-07-02 14:10:38.273 INF] DiagnosticLogger.CreateDebugConsole(DiagnosticLogger:103) (1): Debug console window created successfully
+[2025-07-02 14:10:38.274 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Application starting - Arguments: 
+[2025-07-02 14:10:38.275 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: CLR Version - 9.0.6
+[2025-07-02 14:10:38.275 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: OS Version - Microsoft Windows NT 10.0.20348.0
+[2025-07-02 14:10:38.275 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Machine Name - COPY-OF-VM-2022
+[2025-07-02 14:10:38.276 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: User Name - Administrator
+[2025-07-02 14:10:38.277 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Is 64-bit Process - True
+[2025-07-02 14:10:38.278 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Is 64-bit OS - True
+[2025-07-02 14:10:38.278 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Exception handlers registered
+[2025-07-02 14:10:38.278 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Base startup completed
+[2025-07-02 14:10:38.306 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: MainWindow constructor started
+[2025-07-02 14:10:38.307 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Constructor - Initializing MainWindow
+[2025-07-02 14:10:38.307 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Calling InitializeComponent
+[2025-07-02 14:10:38.731 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: InitializeComponent completed
+[2025-07-02 14:10:38.736 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Window Properties - Title: Noor-e-AhlulBayt Islamic Browser, Width: 1200, Height: 800
+[2025-07-02 14:10:38.738 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Window State - WindowState: Normal, Visibility: Collapsed
+[2025-07-02 14:10:38.738 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Initializing HttpClient
+[2025-07-02 14:10:38.740 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: HttpClient initialized
+[2025-07-02 14:10:38.740 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Configuring database context
+[2025-07-02 14:10:38.834 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Database context configured - Connection: Data Source=noor_browser.db
+[2025-07-02 14:10:38.839 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Initializing ContentFilterService
+[2025-07-02 14:10:38.849 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: ContentFilterService initialized - NSFW Model: Not found
+[2025-07-02 14:10:38.849 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Initializing PrayerTimeService
+[2025-07-02 14:10:38.850 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: PrayerTimeService initialized
+[2025-07-02 14:10:38.850 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Initializing WebViewContentFilterService
+[2025-07-02 14:10:38.851 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: WebViewContentFilterService initialized
+[2025-07-02 14:10:38.851 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Setting up prayer timer
+[2025-07-02 14:10:38.853 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Prayer timer started - Interval: 60 seconds
+[2025-07-02 14:10:38.854 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Registering Loaded event handler
+[2025-07-02 14:10:38.854 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: MainWindow constructor completed successfully
+[2025-07-02 14:10:38.889 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: LocationChanged - New location: 168, 12
+[2025-07-02 14:10:38.893 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: IsVisibleChanged - Visible: True
+[2025-07-02 14:10:39.078 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: SizeChanged - New size: 1200x800
+[2025-07-02 14:10:39.090 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Activated - Window activated
+[2025-07-02 14:10:39.115 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Loaded - MainWindow loaded event triggered
+[2025-07-02 14:10:39.119 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Window State - ActualWidth: 1200, ActualHeight: 800
+[2025-07-02 14:10:39.120 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Window State - IsVisible: True, IsActive: True
+[2025-07-02 14:10:39.121 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Window State - WindowState: Normal, Topmost: False
+[2025-07-02 14:10:39.122 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: InitializeBrowser started
+[2025-07-02 14:10:39.122 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Creating database if needed
+[2025-07-02 14:10:39.559 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Database creation completed
+[2025-07-02 14:10:39.576 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Loading profile and settings
+[2025-07-02 14:10:39.869 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Profile and settings loaded
+[2025-07-02 14:10:39.871 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Checking WebView2 availability
+[2025-07-02 14:10:39.876 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 version available - 138.0.3351.65
+[2025-07-02 14:10:39.876 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Initializing WebView2 core
+[2025-07-02 14:10:39.876 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 control state - IsLoaded: True, Visibility: Visible
+[2025-07-02 14:10:40.191 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 core initialized
+[2025-07-02 14:10:40.262 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 environment - BrowserVersionString: 138.0.3351.65
+[2025-07-02 14:10:40.326 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 environment - UserDataFolder: C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Browser\bin\Debug\net9.0-windows\NoorAhlulBayt.Browser.exe.WebView2
+[2025-07-02 14:10:40.329 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Configuring WebView2 settings
+[2025-07-02 14:10:40.333 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Starting WebView2 configuration
+[2025-07-02 14:10:40.341 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Retrieved WebView2 settings
+[2025-07-02 14:10:40.341 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Configuring security settings
+[2025-07-02 14:10:40.342 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Security settings configured
+[2025-07-02 14:10:40.343 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Configuring content settings
+[2025-07-02 14:10:40.343 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Content settings configured
+[2025-07-02 14:10:40.343 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Setting up content filtering
+[2025-07-02 14:10:40.346 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Content filtering configured
+[2025-07-02 14:10:40.347 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Initializing advanced content filtering
+[2025-07-02 14:10:40.349 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Advanced content filtering initialized successfully
+[2025-07-02 14:10:40.349 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Skipping DOMContentLoaded event to prevent styling interference
+[2025-07-02 14:10:40.349 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - Setting up new window handling
+[2025-07-02 14:10:40.350 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ConfigureWebView - WebView2 configuration completed successfully
+[2025-07-02 14:10:40.351 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: WebView2 settings configured
+[2025-07-02 14:10:40.351 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Navigating to home page - https://www.google.com
+[2025-07-02 14:10:40.352 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Updating prayer time display
+[2025-07-02 14:10:40.358 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Prayer time display updated
+[2025-07-02 14:10:40.358 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Updating status bar
+[2025-07-02 14:10:40.359 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Status bar updated
+[2025-07-02 14:10:40.360 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: InitializeBrowser completed successfully
+[2025-07-02 14:10:40.360 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Loaded - MainWindow loaded event completed successfully
+[2025-07-02 14:10:40.363 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/
+[2025-07-02 14:10:40.364 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:40.364 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:40.375 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:40.377 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:40.377 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:43.695 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:43.727 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/
+[2025-07-02 14:10:43.729 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:43.730 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:43.730 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:43.731 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:43.731 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: False, Forward: False
+[2025-07-02 14:10:43.731 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:43.731 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:43.856 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:43.864 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:43.890 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:43.892 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:43.910 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:43.911 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:43.911 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:45.153 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:10:45.162 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:10:45.163 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:10:45.362 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:45.413 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:45.414 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:45.414 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:45.415 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:45.415 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:45.415 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:10:45.416 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:45.416 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:45.428 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:45.438 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:45.442 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:45.442 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:45.443 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:45.443 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:45.443 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:47.574 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:10:47.582 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:10:47.592 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:10:47.753 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:47.754 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:47.755 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:47.756 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:47.756 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:47.756 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:47.757 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:10:47.757 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:47.757 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:47.762 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:47.785 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:47.785 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:47.787 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:47.788 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:47.788 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:47.788 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:50.262 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:10:50.266 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:10:50.266 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:10:50.467 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:50.475 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:50.476 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:50.477 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:50.477 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:50.477 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:50.478 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:10:50.478 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:50.478 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:50.483 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:50.487 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:50.493 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:50.495 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:50.501 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:50.502 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:50.502 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:51.964 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:10:52.034 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:10:52.039 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:10:52.066 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:52.073 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:52.075 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:52.076 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:52.076 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:52.076 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:52.077 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:10:52.077 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:52.077 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:52.085 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:52.099 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:52.100 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:52.102 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:52.103 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:52.104 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:52.105 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:54.527 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:10:54.531 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:10:54.533 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:10:54.695 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:54.696 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:54.701 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:54.701 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:54.702 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:54.702 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:54.703 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:10:54.703 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:54.703 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:54.708 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:54.720 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:54.724 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:54.725 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:54.725 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:54.725 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:54.726 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:57.308 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:10:57.314 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:10:57.322 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:10:57.462 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:57.463 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:57.465 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:57.466 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:57.467 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:57.469 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:57.469 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:10:57.469 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:57.469 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:57.473 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:57.502 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:57.502 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:57.505 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:57.505 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:57.505 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:57.506 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:57.845 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:57.846 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:57.847 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:57.848 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:57.848 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:57.849 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:57.849 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:10:57.849 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:57.849 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:57.854 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:57.857 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:57.859 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:57.860 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:57.860 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:57.860 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:57.860 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:58.125 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:58.140 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:58.141 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:58.141 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:58.141 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:58.142 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:58.142 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:10:58.142 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:58.142 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:58.148 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:58.155 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:58.157 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:58.158 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:58.158 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:58.158 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:58.158 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:58.430 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: StateChanged - New state: Maximized
+[2025-07-02 14:10:58.435 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: SizeChanged - New size: 1548.8000000000002x876.8000000000001
+[2025-07-02 14:10:58.489 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:10:58.563 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:10:58.564 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:10:58.587 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:58.627 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:58.627 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:58.628 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:58.628 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:58.628 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:58.629 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:10:58.629 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:58.629 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:58.634 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:58.644 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:58.667 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:58.670 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:58.703 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:58.704 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:58.704 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:10:58.976 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:10:59.176 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:10:59.215 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:10:59.222 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:10:59.222 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:10:59.223 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:10:59.644 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:10:59.665 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:10:59.665 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:10:59.707 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:10:59.725 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:59.725 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:10:59.726 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:10:59.726 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:10:59.727 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:10:59.727 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:10:59.727 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:10:59.728 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:10:59.734 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:10:59.739 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:10:59.766 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:10:59.769 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:10:59.784 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:10:59.785 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:10:59.785 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:00.106 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:00.112 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:00.114 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:00.115 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:00.117 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:00.117 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:00.118 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:00.119 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:00.120 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:00.125 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:00.159 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:00.160 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:00.160 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:00.161 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:00.161 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:00.162 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:00.469 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:00.478 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:00.482 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:00.482 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:00.482 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:00.483 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:00.483 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:00.483 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:00.484 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:00.489 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:00.502 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:00.503 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:00.503 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:00.504 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:00.505 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:00.505 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:00.772 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:00.887 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:00.890 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:00.890 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:00.891 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:00.891 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:00.892 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:00.892 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:00.893 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:00.893 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:00.905 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:00.949 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:00.950 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:00.987 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:01.009 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:01.011 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:01.011 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:01.011 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:01.011 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:01.215 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:01.325 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:01.329 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:01.330 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:01.330 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:01.331 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:01.334 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:01.335 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:01.335 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:01.335 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:01.351 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:01.361 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:01.362 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:01.369 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:01.371 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:01.372 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:01.372 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:01.372 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:01.373 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:01.693 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:01.703 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:01.718 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:01.901 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:01.902 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:01.904 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:01.905 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:01.905 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:01.905 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:01.906 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:01.906 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:01.906 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:01.911 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:01.946 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:01.950 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:01.951 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:01.951 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:01.952 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:01.952 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:02.080 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:02.104 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:02.107 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:02.223 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:02.223 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:02.225 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:02.226 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:02.226 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:02.226 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:02.227 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:02.227 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:02.228 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:02.233 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:02.237 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:02.247 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:02.252 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:02.253 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:02.253 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:02.253 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:02.370 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:02.464 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:02.468 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:02.579 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:02.580 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:02.591 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:02.593 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:02.593 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:02.594 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:02.594 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:02.596 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:02.596 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:02.600 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:02.623 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:02.626 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:02.627 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:02.628 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:02.628 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:02.629 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:02.913 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:02.924 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:02.934 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:02.935 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:02.935 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:02.935 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:02.936 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:02.936 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:02.936 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:02.941 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:02.946 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:02.948 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:02.949 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:02.950 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:02.950 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:02.950 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:03.043 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:03.064 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:03.066 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:03.236 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:03.237 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:03.246 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:03.255 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:03.256 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:03.256 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:03.261 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:03.262 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:03.262 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:03.262 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:03.263 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:03.263 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:03.267 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:03.273 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:03.281 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:03.281 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:03.282 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:03.282 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:03.284 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:03.634 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:03.655 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:03.656 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:03.846 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:03.847 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:03.849 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:03.850 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:03.850 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:03.852 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:03.852 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:03.854 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:03.854 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:03.869 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:03.902 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:03.908 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:03.909 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:03.909 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:03.910 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:03.910 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:04.044 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:04.066 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:04.066 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:04.203 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:04.224 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:04.226 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:04.226 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:04.227 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:04.227 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:04.227 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:04.228 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:04.228 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:04.234 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:04.275 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:04.278 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:04.280 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:04.280 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:04.280 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:04.280 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:04.386 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:04.436 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:04.438 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:04.548 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:04.566 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:04.569 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:04.569 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:04.569 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:04.570 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:04.570 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:04.570 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:04.571 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:04.577 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:04.581 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:04.583 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:04.584 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:04.584 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:04.584 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:04.585 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:04.879 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:04.888 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:04.908 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:04.910 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:04.913 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:04.913 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:04.913 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:04.913 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:04.914 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:04.914 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:04.914 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:04.914 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:04.919 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:04.923 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:04.924 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:04.993 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:04.994 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:04.994 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:04.995 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:05.259 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:05.296 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:05.298 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:05.343 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:05.442 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:05.443 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:05.443 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:05.444 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:05.444 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:05.444 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:05.444 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:05.445 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:05.451 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:05.470 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:05.499 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:05.500 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:05.501 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:05.501 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:05.501 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:05.952 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:06.014 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:06.015 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:06.016 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:06.069 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:06.072 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:06.186 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:06.635 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:06.636 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:06.636 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:06.637 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:06.637 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:06.637 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:06.638 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:06.638 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:06.651 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:06.710 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:06.726 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:06.727 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:06.728 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:06.728 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:06.728 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:06.993 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:07.005 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:07.037 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:07.193 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:07.195 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:07.197 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:07.197 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:07.197 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:07.198 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:07.199 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:07.200 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:07.200 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:07.204 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:07.245 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:07.253 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:07.254 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:07.254 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:07.254 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:07.254 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:07.573 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:07.579 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:07.579 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:07.579 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:07.580 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:07.580 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:07.580 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:07.580 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:07.581 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:07.585 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:07.591 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:07.598 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:07.606 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:07.607 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:07.607 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:07.608 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:07.721 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:07.735 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:07.736 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:08.081 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:08.088 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:08.089 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:08.089 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:08.090 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:08.090 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:08.090 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:08.091 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:08.091 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:08.096 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:08.166 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:08.193 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:08.195 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:08.195 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:08.196 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:08.196 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:08.447 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:08.507 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:08.510 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:08.603 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:08.625 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:08.639 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:08.677 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:08.699 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:08.700 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:08.700 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:08.700 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:08.701 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:08.701 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:08.702 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:08.702 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:08.710 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:08.759 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:08.761 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:08.762 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:08.762 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:08.763 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:08.763 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:09.042 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:09.046 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:09.047 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:09.047 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:09.047 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:09.048 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:09.049 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:09.049 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:09.049 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:09.055 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:09.088 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:09.100 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:09.101 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:09.101 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:09.102 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:09.102 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:09.217 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:09.253 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:09.258 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:09.664 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:09.668 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:09.668 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:09.669 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:09.669 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:09.670 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:09.670 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:09.671 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:09.671 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:09.688 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:09.783 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:09.879 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:09.880 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:09.880 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:09.880 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:09.882 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:09.981 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:10.008 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:10.038 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:10.099 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:10.131 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:10.171 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:10.172 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:10.174 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:10.196 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:10.199 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:10.199 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:10.200 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:10.200 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:10.201 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:10.201 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:10.205 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:10.210 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:10.211 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:10.212 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:10.213 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:10.213 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:10.213 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:10.502 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:10.514 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:10.516 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:10.517 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:10.517 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:10.517 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:10.517 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:10.518 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:10.520 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:10.528 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:10.533 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:10.535 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:10.540 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:10.540 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:10.540 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:10.541 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:10.788 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:11.063 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:11.069 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:11.153 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:11.194 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:11.195 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:11.196 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:11.196 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:11.196 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:11.197 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:11.198 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:11.198 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:11.202 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:11.209 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:11.213 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:11.215 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:11.215 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:11.216 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:11.216 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:11.529 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:11.604 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:11.606 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:11.608 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:11.660 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:11.669 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:11.669 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:11.670 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:11.670 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:11.670 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:11.671 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:11.671 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:11.671 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:11.676 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:11.688 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:11.699 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:11.702 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:11.703 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:11.704 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:11.704 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:11.704 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:11.704 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:11.977 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:12.003 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:12.004 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:12.004 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:12.004 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:12.005 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:12.005 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:12.005 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:12.006 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:12.012 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:12.016 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:12.017 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:12.018 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:12.018 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:12.018 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:12.026 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:12.292 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:12.635 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:12.637 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:12.672 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:12.702 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:12.703 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:12.704 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:12.704 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:12.704 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:12.705 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:12.705 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:12.706 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:12.730 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:12.746 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:12.763 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:12.764 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:12.765 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:12.765 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:12.766 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:12.903 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:13.001 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:13.004 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:13.047 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: Theme - Subtle Islamic theme applied
+[2025-07-02 14:11:13.103 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - IsSuccess: True
+[2025-07-02 14:11:13.104 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Final URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:13.105 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Document Title: Google
+[2025-07-02 14:11:13.105 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay hidden
+[2025-07-02 14:11:13.105 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Navigation successful
+[2025-07-02 14:11:13.106 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: CSS - Skipping CSS injection to prevent web page styling interference
+[2025-07-02 14:11:13.106 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Navigation buttons updated - Back: True, Forward: False
+[2025-07-02 14:11:13.106 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated with final URL
+[2025-07-02 14:11:13.107 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: History - Saving to browsing history
+[2025-07-02 14:11:13.118 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: ContentFilter - Starting page content check
+[2025-07-02 14:11:13.286 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status set to Ready
+[2025-07-02 14:11:13.288 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationCompleted - Event handling completed
+[2025-07-02 14:11:13.289 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - URL: https://www.google.com/?safe=active
+[2025-07-02 14:11:13.291 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - IsUserInitiated: True, IsRedirected: False
+[2025-07-02 14:11:13.291 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Loading overlay shown
+[2025-07-02 14:11:13.291 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Address bar updated
+[2025-07-02 14:11:13.292 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: UI - Status text updated
+[2025-07-02 14:11:13.292 INF] WebView2.LogWebView2Event(DiagnosticLogger:226) (1): WEBVIEW2: NavigationStarting - Completed successfully
+[2025-07-02 14:11:13.720 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: IsVisibleChanged - Visible: False
+[2025-07-02 14:11:13.976 INF] Window.LogWindowEvent(DiagnosticLogger:232) (1): WINDOW: Deactivated - Window deactivated
+[2025-07-02 14:11:14.041 INF] Startup.LogStartupStep(DiagnosticLogger:220) (1): STARTUP: Application exiting - Exit code: 0
+[2025-07-02 14:11:14.041 INF] DiagnosticLogger.Shutdown(DiagnosticLogger:241) (1): Shutting down logging system

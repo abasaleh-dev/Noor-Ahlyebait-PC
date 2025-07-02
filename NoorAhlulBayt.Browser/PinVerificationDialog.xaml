@@ -1,0 +1,137 @@
+<Window x:Class="NoorAhlulBayt.Browser.PinVerificationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="PIN Verification"
+        Height="300" Width="400"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <!-- Islamic Theme Colors -->
+        <SolidColorBrush x:Key="IslamicGreenBrush" Color="#2E7D32"/>
+        <SolidColorBrush x:Key="IslamicDarkGreenBrush" Color="#1B5E20"/>
+        <SolidColorBrush x:Key="IslamicLightGreenBrush" Color="#4CAF50"/>
+        <SolidColorBrush x:Key="IslamicGoldBrush" Color="#FFD700"/>
+        <SolidColorBrush x:Key="IslamicDarkBrush" Color="#212121"/>
+        <SolidColorBrush x:Key="IslamicLightBrush" Color="#F5F5F5"/>
+
+        <!-- Button Styles -->
+        <Style x:Key="IslamicButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            <Setter Property="Background" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicDarkGreenBrush}"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="MinWidth" Value="80"/>
+        </Style>
+
+        <!-- PasswordBox Styles -->
+        <Style x:Key="IslamicPasswordBoxStyle" TargetType="PasswordBox" BasedOn="{StaticResource MaterialDesignOutlinedPasswordBox}">
+            <Setter Property="materialDesign:HintAssist.Foreground" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <!-- Window Control Button Styles -->
+        <Style x:Key="WindowControlCloseButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E81123"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <!-- Modern Window Container with rounded corners -->
+    <Border Background="{StaticResource IslamicLightBrush}" CornerRadius="8" BorderBrush="#E0E0E0" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/> <!-- Custom Title Bar -->
+                <RowDefinition Height="*"/>    <!-- Content -->
+                <RowDefinition Height="Auto"/> <!-- Action Buttons -->
+            </Grid.RowDefinitions>
+
+            <!-- Custom Title Bar -->
+            <Border Grid.Row="0" Background="{StaticResource IslamicDarkGreenBrush}" CornerRadius="8,8,0,0"
+                    MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid Height="32">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- App Icon and Title -->
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0">
+                        <materialDesign:PackIcon Kind="Lock" Foreground="White" Width="16" Height="16" VerticalAlignment="Center"/>
+                        <TextBlock Text="PIN Verification" Foreground="White" FontSize="12"
+                                   VerticalAlignment="Center" Margin="8,0,0,0" FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Window Controls -->
+                    <StackPanel Grid.Column="2" Orientation="Horizontal">
+                        <Button x:Name="CloseButton" Click="CloseButton_Click" Style="{StaticResource WindowControlCloseButton}"
+                                Content="✕" ToolTip="Close"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Main Content -->
+            <StackPanel Grid.Row="1" Margin="32" VerticalAlignment="Center">
+                <!-- Icon -->
+                <materialDesign:PackIcon Kind="ShieldLock" Width="48" Height="48" 
+                                       Foreground="{StaticResource IslamicGreenBrush}"
+                                       HorizontalAlignment="Center" Margin="0,0,0,16"/>
+
+                <!-- Message -->
+                <TextBlock x:Name="MessageTextBlock" Text="Please enter your PIN to access settings:"
+                         FontSize="14" TextAlignment="Center" Margin="0,0,0,16"
+                         Foreground="{StaticResource IslamicDarkBrush}" TextWrapping="Wrap"/>
+
+                <!-- PIN Input -->
+                <PasswordBox x:Name="PinPasswordBox" Style="{StaticResource IslamicPasswordBoxStyle}"
+                           materialDesign:HintAssist.Hint="Enter PIN"
+                           KeyDown="PinPasswordBox_KeyDown" MaxLength="20"/>
+
+                <!-- Error Message -->
+                <TextBlock x:Name="ErrorTextBlock" Text="" FontSize="12" 
+                         Foreground="Red" TextAlignment="Center" Margin="0,8,0,0"
+                         Visibility="Collapsed"/>
+            </StackPanel>
+
+            <!-- Action Buttons -->
+            <Border Grid.Row="2" Background="{StaticResource IslamicLightBrush}" 
+                    BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Padding="20,12">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="CancelButton" Content="Cancel" Style="{StaticResource IslamicButtonStyle}"
+                          Click="Cancel_Click" Background="Gray" Margin="0,0,8,0"/>
+                    <Button x:Name="VerifyButton" Content="Verify" Style="{StaticResource IslamicButtonStyle}"
+                          Click="Verify_Click" IsDefault="True"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

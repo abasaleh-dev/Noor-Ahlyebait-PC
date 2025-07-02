@@ -1,0 +1,24 @@
+﻿<Application x:Class="NoorAhlulBayt.Browser.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NoorAhlulBayt.Browser"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Material Design -->
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Green" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Islamic Theme Colors -->
+            <SolidColorBrush x:Key="IslamicGreenBrush" Color="#2E7D32"/>
+            <SolidColorBrush x:Key="IslamicDarkGreenBrush" Color="#1B5E20"/>
+            <SolidColorBrush x:Key="IslamicLightGreenBrush" Color="#4CAF50"/>
+            <SolidColorBrush x:Key="IslamicGoldBrush" Color="#FFD700"/>
+            <SolidColorBrush x:Key="IslamicDarkBrush" Color="#212121"/>
+            <SolidColorBrush x:Key="IslamicLightBrush" Color="#F5F5F5"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

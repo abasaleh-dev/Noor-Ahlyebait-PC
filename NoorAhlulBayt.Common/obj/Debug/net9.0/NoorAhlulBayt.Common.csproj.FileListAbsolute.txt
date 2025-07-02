@@ -1,0 +1,12 @@
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\bin\Debug\net9.0\NoorAhlulBayt.Common.deps.json
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\bin\Debug\net9.0\NoorAhlulBayt.Common.dll
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\bin\Debug\net9.0\NoorAhlulBayt.Common.pdb
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\obj\Debug\net9.0\NoorAhlulBayt.Common.csproj.AssemblyReference.cache
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\obj\Debug\net9.0\NoorAhlulBayt.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\obj\Debug\net9.0\NoorAhlulBayt.Common.AssemblyInfoInputs.cache
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\obj\Debug\net9.0\NoorAhlulBayt.Common.AssemblyInfo.cs
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\obj\Debug\net9.0\NoorAhlulBayt.Common.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\obj\Debug\net9.0\NoorAhlulBayt.Common.dll
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\obj\Debug\net9.0\refint\NoorAhlulBayt.Common.dll
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\obj\Debug\net9.0\NoorAhlulBayt.Common.pdb
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Common\obj\Debug\net9.0\ref\NoorAhlulBayt.Common.dll
