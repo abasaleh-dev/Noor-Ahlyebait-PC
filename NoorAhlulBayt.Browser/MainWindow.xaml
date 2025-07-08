@@ -270,6 +270,9 @@
                           Foreground="Black" Background="White"/>
             </MenuItem>
             <MenuItem Header="_Help" Style="{StaticResource IslamicTopMenuItemStyle}">
+                <MenuItem Header="_Diagnostics" Click="Diagnostics_Click"
+                          Foreground="Black" Background="White"/>
+                <Separator/>
                 <MenuItem Header="_About" Click="About_Click"
                           Foreground="Black" Background="White"/>
             </MenuItem>

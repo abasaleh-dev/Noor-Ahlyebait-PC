@@ -410,7 +410,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private void NavigateToUrl(string url)
+    private async void NavigateToUrl(string url)
     {
         if (string.IsNullOrWhiteSpace(url)) return;
 
@@ -429,6 +429,34 @@ public partial class MainWindow : Window
             }
         }
 
+        // ✅ Address Bar Keyword Guard - Enhanced 3-Step Flow
+        try
+        {
+            StatusText.Text = "Checking URL safety...";
+
+            var addressBarGuardResult = await _contentFilter.CheckAddressBarKeywordGuardAsync(url);
+            if (addressBarGuardResult.IsBlocked)
+            {
+                DiagnosticLogger.LogWebView2Event("AddressBarGuard", $"URL blocked: {url} - {addressBarGuardResult.Reason}");
+                BlockContent("URL Blocked", addressBarGuardResult.Reason);
+                StatusText.Text = "URL blocked for safety";
+                return;
+            }
+
+            // Log successful pass-through for diagnostics
+            if (addressBarGuardResult.Confidence > 0)
+            {
+                DiagnosticLogger.LogWebView2Event("AddressBarGuard",
+                    $"URL allowed: {url} - Confidence: {addressBarGuardResult.Confidence:P1} - {addressBarGuardResult.Reason}");
+            }
+        }
+        catch (Exception ex)
+        {
+            // If Address Bar Guard fails, log error but continue (fail-open for usability)
+            DiagnosticLogger.LogError("AddressBarGuard", $"Error checking URL {url}", ex);
+            StatusText.Text = "URL safety check failed, proceeding...";
+        }
+
         // Apply SafeSearch if enabled for current profile
         if (_currentProfile?.EnableSafeSearch == true)
         {
@@ -437,6 +465,7 @@ public partial class MainWindow : Window
 
         if (WebView.CoreWebView2 != null)
         {
+            StatusText.Text = $"Navigating to {url}...";
             WebView.CoreWebView2.Navigate(url);
         }
     }
@@ -1243,12 +1272,141 @@ public partial class MainWindow : Window
     }
 
     // Help Menu
+    private async void Diagnostics_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            // Show diagnostic information for Address Bar Guard
+            var stats = _contentFilter.GetAddressBarGuardStats();
+            var statsMessage = stats.ToString();
+
+            // Create a simple input dialog
+            var inputDialog = new Window
+            {
+                Title = "Address Bar Guard Diagnostic Test",
+                Width = 500,
+                Height = 200,
+                Owner = this,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                ResizeMode = ResizeMode.NoResize
+            };
+
+            var stackPanel = new StackPanel { Margin = new Thickness(20) };
+            stackPanel.Children.Add(new TextBlock
+            {
+                Text = "Enter a URL to test with Address Bar Keyword Guard:",
+                Margin = new Thickness(0, 0, 0, 10)
+            });
+
+            var urlTextBox = new TextBox
+            {
+                Text = "https://example.com",
+                Margin = new Thickness(0, 0, 0, 15)
+            };
+            stackPanel.Children.Add(urlTextBox);
+
+            var buttonPanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Right
+            };
+
+            var testButton = new Button
+            {
+                Content = "Test URL",
+                Width = 80,
+                Margin = new Thickness(0, 0, 10, 0),
+                IsDefault = true
+            };
+            var statsButton = new Button
+            {
+                Content = "Show Stats",
+                Width = 80,
+                Margin = new Thickness(0, 0, 10, 0)
+            };
+            var cancelButton = new Button
+            {
+                Content = "Cancel",
+                Width = 80,
+                IsCancel = true
+            };
+
+            buttonPanel.Children.Add(testButton);
+            buttonPanel.Children.Add(statsButton);
+            buttonPanel.Children.Add(cancelButton);
+            stackPanel.Children.Add(buttonPanel);
+
+            inputDialog.Content = stackPanel;
+
+            string? testUrl = null;
+            bool showStats = false;
+
+            testButton.Click += (s, e) => { testUrl = urlTextBox.Text; inputDialog.DialogResult = true; };
+            statsButton.Click += (s, e) => { showStats = true; inputDialog.DialogResult = true; };
+            cancelButton.Click += (s, e) => { inputDialog.DialogResult = false; };
+
+            if (inputDialog.ShowDialog() == true)
+            {
+                if (showStats)
+                {
+                    // Show stats only
+                    ShowDiagnosticResults(statsMessage, "Address Bar Guard Statistics");
+                }
+                else if (!string.IsNullOrEmpty(testUrl))
+                {
+                    StatusText.Text = "Running Address Bar Guard diagnostic...";
+                    var diagnostic = await _contentFilter.DiagnoseAddressBarGuardAsync(testUrl);
+
+                    var diagnosticMessage = $"{statsMessage}\n\n{diagnostic}";
+                    ShowDiagnosticResults(diagnosticMessage, "Address Bar Guard Diagnostics");
+                    StatusText.Text = "Diagnostic completed";
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error running diagnostics: {ex.Message}", "Diagnostic Error",
+                          MessageBoxButton.OK, MessageBoxImage.Error);
+            StatusText.Text = "Diagnostic failed";
+        }
+    }
+
+    private void ShowDiagnosticResults(string message, string title)
+    {
+        var diagnosticWindow = new Window
+        {
+            Title = title,
+            Width = 700,
+            Height = 600,
+            Owner = this,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Content = new ScrollViewer
+            {
+                Content = new TextBox
+                {
+                    Text = message,
+                    IsReadOnly = true,
+                    TextWrapping = TextWrapping.Wrap,
+                    VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                    FontFamily = new FontFamily("Consolas"),
+                    FontSize = 11,
+                    Margin = new Thickness(10),
+                    Background = Brushes.White,
+                    Foreground = Brushes.Black
+                }
+            }
+        };
+
+        diagnosticWindow.ShowDialog();
+    }
+
     private void About_Click(object sender, RoutedEventArgs e)
     {
         MessageBox.Show(
             "Noor-e-AhlulBayt Islamic Family-Safe Browser\n" +
             "Version 1.0.0\n\n" +
             "A family-safe browser with Islamic features including:\n" +
+            "• Enhanced Address Bar Keyword Guard with AI\n" +
             "• Content filtering and ad blocking\n" +
             "• Prayer time integration\n" +
             "• Time management controls\n" +

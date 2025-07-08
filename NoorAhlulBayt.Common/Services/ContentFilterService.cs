@@ -10,7 +10,12 @@ public class ContentFilterService
     private readonly List<Regex> _profanityRegexes;
     private readonly List<Regex> _adBlockRegexes;
     private readonly NsfwDetectionService _nsfwDetectionService;
+    private readonly UrlClassificationService _urlClassificationService;
     private readonly HttpClient _httpClient;
+
+    // Address Bar Keyword Guard thresholds
+    private const float HIGH_CONFIDENCE_THRESHOLD = 0.8f;
+    private const float MEDIUM_CONFIDENCE_THRESHOLD = 0.5f;
 
     public ContentFilterService(string? nsfwModelPath = null)
     {
@@ -19,6 +24,7 @@ public class ContentFilterService
         _profanityRegexes = CreateProfanityRegexes();
         _adBlockRegexes = CreateAdBlockRegexes();
         _nsfwDetectionService = new NsfwDetectionService(nsfwModelPath);
+        _urlClassificationService = new UrlClassificationService();
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Add("User-Agent", "NoorAhlulBayt-Browser/1.0");
     }
@@ -251,6 +257,144 @@ public class ContentFilterService
                     Reason = "Ad/tracker pattern blocked",
                     BlockedContent = match.Value,
                     FilterType = FilterType.AdBlock
+                };
+            }
+        }
+
+        return new FilterResult { IsBlocked = false };
+    }
+
+    /// <summary>
+    /// Enhanced Address Bar Keyword Guard - Complete 3-Step Flow
+    /// Step 1: Fast regex check, Step 2: AI classification, Step 3: Threshold decision
+    /// </summary>
+    /// <param name="url">URL to check</param>
+    /// <returns>FilterResult with comprehensive analysis</returns>
+    public async Task<FilterResult> CheckAddressBarKeywordGuardAsync(string url)
+    {
+        if (string.IsNullOrEmpty(url))
+            return new FilterResult { IsBlocked = false };
+
+        // Step 1: Fast regex check for obvious adult keywords and domains
+        var regexResult = CheckAddressBarRegexFast(url);
+        if (regexResult.IsBlocked)
+        {
+            return regexResult; // Block immediately if regex detects obvious adult content
+        }
+
+        // Step 2: AI classifier check (if regex passes)
+        try
+        {
+            var classificationResult = await _urlClassificationService.ClassifyUrlAsync(url);
+
+            // Step 3: Threshold decision
+            if (classificationResult.Confidence >= HIGH_CONFIDENCE_THRESHOLD)
+            {
+                return new FilterResult
+                {
+                    IsBlocked = true,
+                    Reason = $"Address Bar Guard: High confidence adult content ({classificationResult.Confidence:P0}) - {classificationResult.Reason}",
+                    BlockedContent = url,
+                    FilterType = FilterType.NSFW,
+                    Confidence = classificationResult.Confidence
+                };
+            }
+            else if (classificationResult.Confidence >= MEDIUM_CONFIDENCE_THRESHOLD)
+            {
+                // Medium confidence - could add warning or additional checks here
+                return new FilterResult
+                {
+                    IsBlocked = false,
+                    Reason = $"Address Bar Guard: Medium confidence ({classificationResult.Confidence:P0}) - allowing with caution",
+                    FilterType = FilterType.NSFW,
+                    Confidence = classificationResult.Confidence
+                };
+            }
+            else
+            {
+                // Low confidence - allow
+                return new FilterResult
+                {
+                    IsBlocked = false,
+                    Reason = $"Address Bar Guard: Low risk ({classificationResult.Confidence:P0})",
+                    Confidence = classificationResult.Confidence
+                };
+            }
+        }
+        catch (Exception ex)
+        {
+            // If AI classification fails, fall back to basic checks
+            return new FilterResult
+            {
+                IsBlocked = false,
+                Reason = $"Address Bar Guard: AI classification failed, allowing - {ex.Message}",
+                Confidence = 0.0f
+            };
+        }
+    }
+
+    /// <summary>
+    /// Enhanced Address Bar Keyword Guard - Step 1: Fast Regex Check
+    /// Performs rapid URL filtering for obvious adult domains and keywords
+    /// </summary>
+    /// <param name="url">URL to check</param>
+    /// <returns>FilterResult with fast regex analysis</returns>
+    public FilterResult CheckAddressBarRegexFast(string url)
+    {
+        if (string.IsNullOrEmpty(url))
+            return new FilterResult { IsBlocked = false };
+
+        var lowerUrl = url.ToLowerInvariant();
+
+        // Step 1: Fast regex check for obvious adult keywords and domains
+        var adultKeywords = new[]
+        {
+            "adult", "porn", "xxx", "sex", "nude", "cam", "naked", "erotic",
+            "fetish", "escort", "hookup", "dating", "nsfw", "mature", "explicit"
+        };
+
+        // Check for adult keywords in URL
+        foreach (var keyword in adultKeywords)
+        {
+            if (lowerUrl.Contains(keyword))
+            {
+                return new FilterResult
+                {
+                    IsBlocked = true,
+                    Reason = $"Address Bar Guard: Adult keyword detected - {keyword}",
+                    BlockedContent = keyword,
+                    FilterType = FilterType.Profanity,
+                    Confidence = 0.95f // High confidence for obvious keywords
+                };
+            }
+        }
+
+        // Check against enhanced adult domain patterns
+        var adultDomainPatterns = new[]
+        {
+            @"\b(porn|xxx|sex|nude|adult|cam|escort|hookup)\w*\.(com|net|org|tv|xxx)",
+            @"\b\w*(porn|xxx|sex|nude|adult|cam|escort|hookup)\w*\.(com|net|org|tv|xxx)",
+            @"(18|21)(\+|plus)",
+            @"(red|you|x|porn)tube",
+            @"xvideos\.(com|net|org)",
+            @"pornhub\.(com|net|org)",
+            @"redtube\.(com|net|org)",
+            @"(adult|sex|porn|xxx).*?(site|hub|tube|cam|chat)"
+        };
+
+        foreach (var pattern in adultDomainPatterns)
+        {
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            var match = regex.Match(lowerUrl);
+            if (match.Success)
+            {
+                return new FilterResult
+                {
+                    IsBlocked = true,
+                    Reason = $"Address Bar Guard: Adult domain pattern detected",
+                    BlockedContent = match.Value,
+                    FilterType = FilterType.Domain,
+                    Confidence = 0.90f
                 };
             }
         }
@@ -528,10 +672,87 @@ public class ContentFilterService
         };
     }
 
+    /// <summary>
+    /// Diagnostic method for testing Address Bar Keyword Guard functionality
+    /// </summary>
+    /// <param name="testUrl">URL to test</param>
+    /// <returns>Detailed diagnostic information</returns>
+    public async Task<AddressBarGuardDiagnostic> DiagnoseAddressBarGuardAsync(string testUrl)
+    {
+        var diagnostic = new AddressBarGuardDiagnostic
+        {
+            TestUrl = testUrl,
+            Timestamp = DateTime.Now
+        };
+
+        try
+        {
+            // Step 1: Test regex check
+            var regexResult = CheckAddressBarRegexFast(testUrl);
+            diagnostic.RegexCheckResult = regexResult;
+            diagnostic.RegexCheckTime = DateTime.Now;
+
+            if (!regexResult.IsBlocked)
+            {
+                // Step 2: Test AI classification
+                var classificationStart = DateTime.Now;
+                var classificationResult = await _urlClassificationService.ClassifyUrlAsync(testUrl);
+                diagnostic.AiClassificationTime = DateTime.Now - classificationStart;
+                diagnostic.AiClassificationResult = classificationResult;
+
+                // Step 3: Test complete flow
+                var completeFlowStart = DateTime.Now;
+                var completeResult = await CheckAddressBarKeywordGuardAsync(testUrl);
+                diagnostic.CompleteFlowTime = DateTime.Now - completeFlowStart;
+                diagnostic.CompleteFlowResult = completeResult;
+            }
+            else
+            {
+                diagnostic.AiClassificationResult = new UrlClassificationResult
+                {
+                    IsAdult = true,
+                    Confidence = regexResult.Confidence,
+                    Reason = "Blocked by regex, AI classification skipped"
+                };
+                diagnostic.CompleteFlowResult = regexResult;
+            }
+
+            diagnostic.IsSuccessful = true;
+        }
+        catch (Exception ex)
+        {
+            diagnostic.IsSuccessful = false;
+            diagnostic.ErrorMessage = ex.Message;
+            diagnostic.ErrorDetails = ex.ToString();
+        }
+
+        return diagnostic;
+    }
+
+    /// <summary>
+    /// Get Address Bar Guard performance statistics
+    /// </summary>
+    /// <returns>Performance statistics</returns>
+    public AddressBarGuardStats GetAddressBarGuardStats()
+    {
+        return new AddressBarGuardStats
+        {
+            IsNsfwModelLoaded = _nsfwDetectionService.IsModelLoaded,
+            UrlClassificationServiceLoaded = _urlClassificationService != null,
+            HighConfidenceThreshold = HIGH_CONFIDENCE_THRESHOLD,
+            MediumConfidenceThreshold = MEDIUM_CONFIDENCE_THRESHOLD,
+            ProfanityWordsCount = _profanityWords.Count,
+            AdBlockRulesCount = _adBlockRules.Count,
+            ProfanityRegexCount = _profanityRegexes.Count,
+            AdBlockRegexCount = _adBlockRegexes.Count
+        };
+    }
+
     public void Dispose()
     {
         _nsfwDetectionService?.Dispose();
         _httpClient?.Dispose();
+        // Note: UrlClassificationService doesn't implement IDisposable as it doesn't hold resources
     }
 }
 
@@ -554,4 +775,90 @@ public enum FilterType
     Domain,
     TimeLimit,
     Azan
+}
+
+/// <summary>
+/// Diagnostic information for Address Bar Keyword Guard testing
+/// </summary>
+public class AddressBarGuardDiagnostic
+{
+    public string TestUrl { get; set; } = string.Empty;
+    public DateTime Timestamp { get; set; }
+    public bool IsSuccessful { get; set; }
+    public string ErrorMessage { get; set; } = string.Empty;
+    public string ErrorDetails { get; set; } = string.Empty;
+
+    // Step 1: Regex Check
+    public FilterResult RegexCheckResult { get; set; } = new FilterResult();
+    public DateTime RegexCheckTime { get; set; }
+
+    // Step 2: AI Classification
+    public UrlClassificationResult AiClassificationResult { get; set; } = new UrlClassificationResult();
+    public TimeSpan AiClassificationTime { get; set; }
+
+    // Step 3: Complete Flow
+    public FilterResult CompleteFlowResult { get; set; } = new FilterResult();
+    public TimeSpan CompleteFlowTime { get; set; }
+
+    public override string ToString()
+    {
+        var result = $"Address Bar Guard Diagnostic for: {TestUrl}\n";
+        result += $"Timestamp: {Timestamp:yyyy-MM-dd HH:mm:ss.fff}\n";
+        result += $"Success: {IsSuccessful}\n";
+
+        if (!IsSuccessful)
+        {
+            result += $"Error: {ErrorMessage}\n";
+            return result;
+        }
+
+        result += $"\n--- Step 1: Regex Check ---\n";
+        result += $"Blocked: {RegexCheckResult.IsBlocked}\n";
+        result += $"Reason: {RegexCheckResult.Reason}\n";
+        result += $"Confidence: {RegexCheckResult.Confidence:P1}\n";
+
+        result += $"\n--- Step 2: AI Classification ---\n";
+        result += $"Adult Content: {AiClassificationResult.IsAdult}\n";
+        result += $"Confidence: {AiClassificationResult.Confidence:P1}\n";
+        result += $"Reason: {AiClassificationResult.Reason}\n";
+        result += $"Processing Time: {AiClassificationTime.TotalMilliseconds:F1}ms\n";
+
+        result += $"\n--- Step 3: Final Decision ---\n";
+        result += $"Final Blocked: {CompleteFlowResult.IsBlocked}\n";
+        result += $"Final Reason: {CompleteFlowResult.Reason}\n";
+        result += $"Final Confidence: {CompleteFlowResult.Confidence:P1}\n";
+        result += $"Total Processing Time: {CompleteFlowTime.TotalMilliseconds:F1}ms\n";
+
+        return result;
+    }
+}
+
+/// <summary>
+/// Performance statistics for Address Bar Keyword Guard
+/// </summary>
+public class AddressBarGuardStats
+{
+    public bool IsNsfwModelLoaded { get; set; }
+    public bool UrlClassificationServiceLoaded { get; set; }
+    public float HighConfidenceThreshold { get; set; }
+    public float MediumConfidenceThreshold { get; set; }
+    public int ProfanityWordsCount { get; set; }
+    public int AdBlockRulesCount { get; set; }
+    public int ProfanityRegexCount { get; set; }
+    public int AdBlockRegexCount { get; set; }
+
+    public override string ToString()
+    {
+        var result = "Address Bar Keyword Guard Statistics\n";
+        result += "=====================================\n";
+        result += $"NSFW Model Loaded: {IsNsfwModelLoaded}\n";
+        result += $"URL Classification Service: {UrlClassificationServiceLoaded}\n";
+        result += $"High Confidence Threshold: {HighConfidenceThreshold:P0}\n";
+        result += $"Medium Confidence Threshold: {MediumConfidenceThreshold:P0}\n";
+        result += $"Profanity Words: {ProfanityWordsCount}\n";
+        result += $"Ad Block Rules: {AdBlockRulesCount}\n";
+        result += $"Profanity Regex Patterns: {ProfanityRegexCount}\n";
+        result += $"Ad Block Regex Patterns: {AdBlockRegexCount}\n";
+        return result;
+    }
 }
