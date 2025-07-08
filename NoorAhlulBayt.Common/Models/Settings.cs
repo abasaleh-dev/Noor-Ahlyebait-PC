@@ -21,11 +21,21 @@ public class Settings
     public string? AdminEncryptedPin { get; set; }
     public bool RequireAdminPinForProfileSwitch { get; set; } = false;
 
+    // Master Password Settings (for Companion App)
+    public string? MasterPasswordHash { get; set; }
+    public string? MasterPasswordSalt { get; set; }
+    public bool RequireMasterPassword { get; set; } = true;
+
     // Companion App Settings
     public bool EnableCompanionApp { get; set; } = true;
     public bool BlockOtherBrowsers { get; set; } = true;
     public bool NotifyOnBrowserAttempt { get; set; } = true;
-    public string BlockedBrowsers { get; set; } = "chrome.exe,firefox.exe,msedge.exe,opera.exe,brave.exe"; // comma-separated
+    public string BlockedBrowsers { get; set; } = "chrome,firefox,msedge,opera,brave"; // comma-separated process names
+
+    // Other Browser Monitoring Settings
+    public bool MonitorOtherBrowsers { get; set; } = true;
+    public bool AutoTerminateOtherBrowsers { get; set; } = true;
+    public string AllowedBrowsers { get; set; } = string.Empty; // comma-separated whitelist
 
     // Filter Lists
     public string AdBlockFilterListsUrls { get; set; } = "https://easylist.to/easylist/easylist.txt,https://easylist.to/easylist/easyprivacy.txt";

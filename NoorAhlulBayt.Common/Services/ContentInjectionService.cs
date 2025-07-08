@@ -391,22 +391,52 @@ namespace NoorAhlulBayt.Common.Services
         public string GetContentFilterStyles()
         {
             return @"
+/* Islamic Theme Styles for Web Content */
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap');
+
+/* Arabic Text Styling */
+*[lang='ar'], *[lang='ar-SA'], *[lang='ar-EG'], *[lang='ar-AE'],
+*[dir='rtl'], .arabic, .quran, .hadith, .islamic-text {
+    font-family: 'Scheherazade New', 'Traditional Arabic', 'Arabic Typesetting', serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+    line-height: 1.8 !important;
+    font-size: 1.1em !important;
+}
+
+/* Islamic Content Enhancement */
+.quran-verse, .hadith-text, .dua-text {
+    font-family: 'Scheherazade New', 'Traditional Arabic', serif !important;
+    direction: rtl !important;
+    text-align: center !important;
+    line-height: 2 !important;
+    font-size: 1.2em !important;
+    color: #1B5E20 !important;
+    background: linear-gradient(135deg, #F8F8FF 0%, #E8F5E8 100%) !important;
+    padding: 15px !important;
+    border-radius: 8px !important;
+    border: 2px solid #FFD700 !important;
+    margin: 10px 0 !important;
+}
+
+/* Content Filter Blocked Content Styles */
 .noor-blocked-content {
-    background: #f0f0f0 !important;
-    border: 2px dashed #ccc !important;
+    background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%) !important;
+    border: 2px solid #FFD700 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    font-family: Arial, sans-serif !important;
-    font-size: 12px !important;
-    color: #666 !important;
+    font-family: 'Scheherazade New', Arial, sans-serif !important;
+    font-size: 14px !important;
+    color: #FFD700 !important;
     cursor: pointer !important;
     position: relative !important;
+    border-radius: 8px !important;
 }
 
 .noor-blocked-content:hover {
-    background: #e0e0e0 !important;
-    border-color: #999 !important;
+    background: linear-gradient(135deg, #0D3F12 0%, #1B5E20 100%) !important;
+    border-color: #FFA000 !important;
 }
 
 .noor-blocked-overlay {
@@ -414,11 +444,38 @@ namespace NoorAhlulBayt.Common.Services
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    background: rgba(255, 255, 255, 0.9) !important;
-    padding: 10px !important;
-    border-radius: 5px !important;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+    background: rgba(27, 94, 32, 0.95) !important;
+    color: #FFD700 !important;
+    padding: 15px !important;
+    border-radius: 8px !important;
+    border: 1px solid #FFD700 !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
     z-index: 1000 !important;
+    font-family: 'Scheherazade New', Arial, sans-serif !important;
+    text-align: center !important;
+}
+
+/* Islamic Website Enhancement */
+body {
+    --islamic-green: #2E7D32;
+    --islamic-dark-green: #1B5E20;
+    --islamic-gold: #FFD700;
+    --islamic-black: #000000;
+}
+
+/* Prayer Time Displays */
+.prayer-time, .salah-time, .namaz-time {
+    font-family: 'Scheherazade New', serif !important;
+    color: var(--islamic-dark-green) !important;
+    font-weight: bold !important;
+    direction: rtl !important;
+}
+
+/* Islamic Calendar and Dates */
+.hijri-date, .islamic-date {
+    font-family: 'Scheherazade New', serif !important;
+    direction: rtl !important;
+    color: var(--islamic-dark-green) !important;
 }
 ";
         }

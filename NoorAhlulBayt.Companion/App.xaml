@@ -2,8 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:NoorAhlulBayt.Companion"
-             StartupUri="MainWindow.xaml">
+             Startup="Application_Startup">
     <Application.Resources>
-         
+        <!-- Islamic Theme Colors -->
+        <SolidColorBrush x:Key="IslamicGreenBrush" Color="#2E7D32"/>
+        <SolidColorBrush x:Key="IslamicDarkGreenBrush" Color="#1B5E20"/>
+        <SolidColorBrush x:Key="IslamicGoldBrush" Color="#FFD700"/>
+        <SolidColorBrush x:Key="IslamicBlackBrush" Color="#000000"/>
+        <SolidColorBrush x:Key="IslamicCharcoalBrush" Color="#2C2C2C"/>
     </Application.Resources>
 </Application>

@@ -1,0 +1,98 @@
+# Visual Studio files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+
+# Build output
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+*.exe
+*.pdb
+*.dll
+*.cache
+*.ilk
+*.log
+*.sbr
+*.tlb
+*.tlh
+*.bak
+*.tmp
+*.tlog
+*.manifest
+*.resources
+*.resx
+*.cachefile
+
+# Visual Studio temporary files
+*.vs/
+.vscode/
+*.code-workspace
+*.csproj.DotSettings
+*.DotSettings.user
+*.suo
+*.ncb
+*.aps
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.VC.opendb
+
+# NuGet packages
+packages/
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+
+# WPF-specific generated files
+*.g.cs
+*.g.i.cs
+*.baml
+*.xaml.cs
+*.xaml
+*.xamlx
+*.pf
+*.fb
+*.fbp
+*.csproj.FileListAbsolute.txt
+
+# Test results
+TestResults/
+*.trx
+*.xml
+*.coverage
+*.coveragexml
+
+# Roslyn cache
+*.ide/
+*.roslyn/
+
+# Backup and temporary files
+*~
+*.bak
+*.tmp
+*.temp
+*.swp
+Thumbs.db
+desktop.ini
+
+# Miscellaneous
+.DS_Store
+*.lock
+*.pidb
+*.userprefs
+*.publishsettings
+*.pubxml
+*.pubxml.user
+
+# Sensitive files
+*.config
+*.csproj.user
+*.settings
+*.suo
+*.cache
+*.docstates

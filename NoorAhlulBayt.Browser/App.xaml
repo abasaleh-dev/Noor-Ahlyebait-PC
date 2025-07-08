@@ -12,13 +12,31 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Islamic Theme Colors -->
+            <!-- Enhanced Islamic Theme Colors - Green and Black Scheme -->
+            <!-- Primary Green Colors -->
             <SolidColorBrush x:Key="IslamicGreenBrush" Color="#2E7D32"/>
             <SolidColorBrush x:Key="IslamicDarkGreenBrush" Color="#1B5E20"/>
             <SolidColorBrush x:Key="IslamicLightGreenBrush" Color="#4CAF50"/>
-            <SolidColorBrush x:Key="IslamicGoldBrush" Color="#FFD700"/>
+            <SolidColorBrush x:Key="IslamicVeryDarkGreenBrush" Color="#0D3F12"/>
+
+            <!-- Black and Dark Colors -->
+            <SolidColorBrush x:Key="IslamicBlackBrush" Color="#000000"/>
             <SolidColorBrush x:Key="IslamicDarkBrush" Color="#212121"/>
+            <SolidColorBrush x:Key="IslamicCharcoalBrush" Color="#2C2C2C"/>
+            <SolidColorBrush x:Key="IslamicSoftBlackBrush" Color="#1A1A1A"/>
+
+            <!-- Accent Colors -->
+            <SolidColorBrush x:Key="IslamicGoldBrush" Color="#FFD700"/>
+            <SolidColorBrush x:Key="IslamicCopperBrush" Color="#B87333"/>
+            <SolidColorBrush x:Key="IslamicPearlBrush" Color="#F8F8FF"/>
+
+            <!-- Light Colors -->
             <SolidColorBrush x:Key="IslamicLightBrush" Color="#F5F5F5"/>
+            <SolidColorBrush x:Key="IslamicCreamBrush" Color="#FEFEFE"/>
+
+            <!-- Scheherazade Font Family -->
+            <FontFamily x:Key="ScheherazadeFontFamily">pack://application:,,,/Fonts/#Scheherazade New</FontFamily>
+            <FontFamily x:Key="ArabicFontFamily">pack://application:,,,/Fonts/#Scheherazade New, Traditional Arabic, Arabic Typesetting, Segoe UI</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

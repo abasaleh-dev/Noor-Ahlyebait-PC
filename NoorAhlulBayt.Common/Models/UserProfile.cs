@@ -45,4 +45,5 @@ public class UserProfile
     // Navigation Properties
     public virtual ICollection<Bookmark> Bookmarks { get; set; } = new List<Bookmark>();
     public virtual ICollection<BrowsingHistory> BrowsingHistory { get; set; } = new List<BrowsingHistory>();
+    public virtual ICollection<DailyUsageSession> DailyUsageSessions { get; set; } = new List<DailyUsageSession>();
 }

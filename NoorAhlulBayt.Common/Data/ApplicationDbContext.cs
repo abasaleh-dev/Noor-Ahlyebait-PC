@@ -15,6 +15,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Bookmark> Bookmarks { get; set; }
     public DbSet<BrowsingHistory> BrowsingHistory { get; set; }
     public DbSet<PrayerTime> PrayerTimes { get; set; }
+    public DbSet<DailyUsageSession> DailyUsageSessions { get; set; }
+    public DbSet<BrowserAttemptLog> BrowserAttemptLogs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -33,6 +35,11 @@ public class ApplicationDbContext : DbContext
                   .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasMany(e => e.BrowsingHistory)
+                  .WithOne(e => e.UserProfile)
+                  .HasForeignKey(e => e.UserProfileId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasMany(e => e.DailyUsageSessions)
                   .WithOne(e => e.UserProfile)
                   .HasForeignKey(e => e.UserProfileId)
                   .OnDelete(DeleteBehavior.Cascade);
@@ -63,6 +70,22 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<PrayerTime>(entity =>
         {
             entity.HasIndex(e => new { e.City, e.Country, e.Date }).IsUnique();
+        });
+
+        // DailyUsageSession Configuration
+        modelBuilder.Entity<DailyUsageSession>(entity =>
+        {
+            entity.HasIndex(e => new { e.UserProfileId, e.Date });
+            entity.HasIndex(e => e.IsActive);
+        });
+
+        // BrowserAttemptLog Configuration
+        modelBuilder.Entity<BrowserAttemptLog>(entity =>
+        {
+            entity.HasIndex(e => e.AttemptTime);
+            entity.HasIndex(e => e.BrowserName);
+            entity.HasIndex(e => e.Action);
+            entity.HasIndex(e => e.UserProfileId);
         });
 
         // Seed default data
