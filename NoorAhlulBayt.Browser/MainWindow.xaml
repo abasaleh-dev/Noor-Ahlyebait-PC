@@ -18,13 +18,31 @@
         KeyDown="MainWindow_KeyDown">
 
     <Window.Resources>
-        <!-- Islamic Theme Colors -->
+        <!-- Enhanced Islamic Theme Colors - Green and Black Scheme -->
+        <!-- Primary Green Colors -->
         <SolidColorBrush x:Key="IslamicGreenBrush" Color="#2E7D32"/>
         <SolidColorBrush x:Key="IslamicDarkGreenBrush" Color="#1B5E20"/>
         <SolidColorBrush x:Key="IslamicLightGreenBrush" Color="#4CAF50"/>
-        <SolidColorBrush x:Key="IslamicGoldBrush" Color="#FFD700"/>
+        <SolidColorBrush x:Key="IslamicVeryDarkGreenBrush" Color="#0D3F12"/>
+
+        <!-- Black and Dark Colors -->
+        <SolidColorBrush x:Key="IslamicBlackBrush" Color="#000000"/>
         <SolidColorBrush x:Key="IslamicDarkBrush" Color="#212121"/>
+        <SolidColorBrush x:Key="IslamicCharcoalBrush" Color="#2C2C2C"/>
+        <SolidColorBrush x:Key="IslamicSoftBlackBrush" Color="#1A1A1A"/>
+
+        <!-- Accent Colors -->
+        <SolidColorBrush x:Key="IslamicGoldBrush" Color="#FFD700"/>
+        <SolidColorBrush x:Key="IslamicCopperBrush" Color="#B87333"/>
+        <SolidColorBrush x:Key="IslamicPearlBrush" Color="#F8F8FF"/>
+
+        <!-- Light Colors -->
         <SolidColorBrush x:Key="IslamicLightBrush" Color="#F5F5F5"/>
+        <SolidColorBrush x:Key="IslamicCreamBrush" Color="#FEFEFE"/>
+
+        <!-- Scheherazade Font Family -->
+        <FontFamily x:Key="ScheherazadeFontFamily">pack://application:,,,/Fonts/#Scheherazade New</FontFamily>
+        <FontFamily x:Key="ArabicFontFamily">pack://application:,,,/Fonts/#Scheherazade New, Traditional Arabic, Arabic Typesetting, Segoe UI</FontFamily>
 
         <!-- Button Styles -->
         <Style x:Key="IslamicButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
@@ -188,8 +206,8 @@
         </Style>
     </Window.Resources>
 
-    <!-- Modern Window Container with rounded corners -->
-    <Border Background="{StaticResource IslamicLightBrush}" CornerRadius="8" BorderBrush="#E0E0E0" BorderThickness="1">
+    <!-- Modern Islamic Window Container with rounded corners -->
+    <Border Background="{StaticResource IslamicCharcoalBrush}" CornerRadius="8" BorderBrush="{StaticResource IslamicGoldBrush}" BorderThickness="2">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/> <!-- Custom Title Bar -->
@@ -199,8 +217,8 @@
                 <RowDefinition Height="Auto"/> <!-- Status Bar -->
             </Grid.RowDefinitions>
 
-            <!-- Custom Title Bar -->
-            <Border Grid.Row="0" Background="{StaticResource IslamicDarkGreenBrush}" CornerRadius="8,8,0,0"
+            <!-- Custom Islamic Title Bar -->
+            <Border Grid.Row="0" Background="{StaticResource IslamicBlackBrush}" CornerRadius="8,8,0,0"
                     MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
                 <Grid Height="32">
                     <Grid.ColumnDefinitions>
@@ -211,8 +229,8 @@
 
                     <!-- App Icon and Title -->
                     <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0">
-                        <materialDesign:PackIcon Kind="Web" Foreground="White" Width="16" Height="16" VerticalAlignment="Center"/>
-                        <TextBlock Text="Noor-e-AhlulBayt Islamic Browser" Foreground="White" FontSize="12"
+                        <materialDesign:PackIcon Kind="Web" Foreground="{StaticResource IslamicGoldBrush}" Width="16" Height="16" VerticalAlignment="Center"/>
+                        <TextBlock Text="Noor-e-AhlulBayt Islamic Browser" Foreground="{StaticResource IslamicGoldBrush}" FontSize="12"
                                    VerticalAlignment="Center" Margin="8,0,0,0" FontWeight="Medium"/>
                     </StackPanel>
 
@@ -228,12 +246,10 @@
                 </Grid>
             </Border>
 
-            <!-- Menu Bar -->
-            <Menu Grid.Row="1" Background="{StaticResource IslamicDarkGreenBrush}">
+            <!-- Islamic Menu Bar -->
+            <Menu Grid.Row="1" Background="{StaticResource IslamicSoftBlackBrush}">
             <MenuItem Header="_File" Style="{StaticResource IslamicTopMenuItemStyle}">
-                <MenuItem Header="_New Tab" Click="NewTab_Click" InputGestureText="Ctrl+T"
-                          Foreground="Black" Background="White"/>
-                <MenuItem Header="_New Incognito Tab" Click="NewIncognitoTab_Click" InputGestureText="Ctrl+Shift+N"
+                <MenuItem Header="_New Window" Click="NewWindow_Click" InputGestureText="Ctrl+N"
                           Foreground="Black" Background="White"/>
                 <Separator/>
                 <MenuItem Header="_Settings" Click="Settings_Click" InputGestureText="Ctrl+,"
@@ -262,12 +278,9 @@
                           Foreground="Black" Background="White"/>
             </MenuItem>
             <MenuItem Header="_Islamic" Style="{StaticResource IslamicTopMenuItemStyle}">
-                <MenuItem Header="_Prayer Times" Click="PrayerTimes_Click"
-                          Foreground="Black" Background="White"/>
-                <MenuItem Header="_Qibla Direction" Click="QiblaDirection_Click"
-                          Foreground="Black" Background="White"/>
-                <MenuItem Header="_Islamic Resources" Click="IslamicResources_Click"
-                          Foreground="Black" Background="White"/>
+                <MenuItem Header="_Prayer Times" Click="PrayerTimes_Click" Foreground="Black" Background="White"/>
+                <MenuItem Header="_Qibla Direction" Click="QiblaDirection_Click" Foreground="Black" Background="White"/>
+                <MenuItem Header="_Islamic Resources" Click="IslamicResources_Click" Foreground="Black" Background="White"/>
             </MenuItem>
             <MenuItem Header="_Help" Style="{StaticResource IslamicTopMenuItemStyle}">
                 <MenuItem Header="_Diagnostics" Click="Diagnostics_Click"
@@ -288,6 +301,7 @@
                     <ColumnDefinition Width="Auto"/> <!-- Home Button -->
                     <ColumnDefinition Width="*"/>    <!-- Address Bar Container -->
                     <ColumnDefinition Width="Auto"/> <!-- Bookmark Button -->
+                    <ColumnDefinition Width="Auto"/> <!-- Incognito Toggle -->
                     <ColumnDefinition Width="Auto"/> <!-- Settings Button -->
                     <ColumnDefinition Width="Auto"/> <!-- Prayer Time Display -->
                 </Grid.ColumnDefinitions>
@@ -361,21 +375,33 @@
                     <materialDesign:PackIcon Kind="Star" Width="18" Height="18"/>
                 </Button>
 
+                <!-- Incognito Toggle Button -->
+                <ToggleButton x:Name="IncognitoToggle" Grid.Column="6"
+                              Style="{StaticResource MaterialDesignActionToggleButton}"
+                              Click="IncognitoToggle_Click"
+                              ToolTip="Toggle Private Mode (Ctrl+Shift+N)"
+                              Foreground="{StaticResource IslamicGreenBrush}"
+                              Margin="6,0"
+                              Width="36" Height="36">
+                    <materialDesign:PackIcon Kind="Incognito" Width="18" Height="18"/>
+                </ToggleButton>
+
                 <!-- Settings Button -->
-                <Button x:Name="SettingsButton" Grid.Column="6" Style="{StaticResource NavigationButtonStyle}"
+                <Button x:Name="SettingsButton" Grid.Column="7" Style="{StaticResource NavigationButtonStyle}"
                         Click="Settings_Click" ToolTip="Settings (Ctrl+,)">
                     <materialDesign:PackIcon Kind="Settings" Width="18" Height="18"/>
                 </Button>
 
-                <!-- Prayer Time Display -->
-                <Border Grid.Column="7" Background="{StaticResource IslamicDarkGreenBrush}"
-                        CornerRadius="6" Padding="12,6" Margin="12,0,0,0">
+                <!-- Islamic Prayer Time Display -->
+                <Border Grid.Column="8" Background="{StaticResource IslamicBlackBrush}"
+                        CornerRadius="6" Padding="12,6" Margin="12,0,0,0"
+                        BorderBrush="{StaticResource IslamicGoldBrush}" BorderThickness="1">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Clock" Width="18" Height="18"
                                                Foreground="{StaticResource IslamicGoldBrush}"
                                                VerticalAlignment="Center" Margin="0,0,6,0"/>
                         <TextBlock x:Name="NextPrayerText" Text="Loading..."
-                                 Foreground="White" FontSize="13" FontWeight="Medium"
+                                 Foreground="{StaticResource IslamicGoldBrush}" FontSize="13" FontWeight="Medium"
                                  VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
@@ -436,8 +462,9 @@
                 </Grid>
             </Border>
 
-            <!-- Status Bar -->
-            <StatusBar Grid.Row="4" Background="{StaticResource IslamicDarkGreenBrush}" Foreground="White" Height="28">
+            <!-- Enhanced Islamic Status Bar -->
+            <StatusBar Grid.Row="4" Background="{StaticResource IslamicBlackBrush}" Foreground="{StaticResource IslamicGoldBrush}" Height="28"
+                       BorderBrush="{StaticResource IslamicGoldBrush}" BorderThickness="0,1,0,0">
             <StatusBarItem>
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="Shield" Width="14" Height="14"
@@ -454,6 +481,16 @@
                                                    Foreground="{StaticResource IslamicGoldBrush}"
                                                    VerticalAlignment="Center" Margin="0,0,4,0"/>
                             <TextBlock x:Name="FilterStatusText" Text="Filters: Active" FontSize="11"
+                                     VerticalAlignment="Center" FontWeight="Medium"/>
+                        </StackPanel>
+                    </Border>
+                    <Border x:Name="IncognitoIndicator" Background="#FF6B46C1" CornerRadius="3" Padding="6,2"
+                            Margin="0,0,12,0" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Incognito" Width="12" Height="12"
+                                                   Foreground="White"
+                                                   VerticalAlignment="Center" Margin="0,0,4,0"/>
+                            <TextBlock Text="Private Mode" FontSize="11" Foreground="White"
                                      VerticalAlignment="Center" FontWeight="Medium"/>
                         </StackPanel>
                     </Border>

@@ -31,8 +31,10 @@ public partial class MainWindow : Window
     private readonly ContentFilterService _contentFilter;
     private readonly PrayerTimeService _prayerTimeService;
     private readonly WebViewContentFilterService _webViewContentFilter;
+    private readonly TimeTrackingService _timeTrackingService;
     private readonly HttpClient _httpClient;
     private readonly System.Timers.Timer _prayerTimer;
+    private readonly System.Timers.Timer _timeUpdateTimer;
     private UserProfile? _currentProfile;
     private Settings? _appSettings;
     private string _homeUrl = "https://www.google.com";
@@ -112,10 +114,19 @@ public partial class MainWindow : Window
             _webViewContentFilter = new WebViewContentFilterService(_contentFilter);
             DiagnosticLogger.LogStartupStep("WebViewContentFilterService initialized");
 
+            DiagnosticLogger.LogStartupStep("Initializing TimeTrackingService");
+            _timeTrackingService = new TimeTrackingService(_context);
+            DiagnosticLogger.LogStartupStep("TimeTrackingService initialized");
+
             // Initialize prayer timer (check every minute)
             DiagnosticLogger.LogStartupStep("Setting up prayer timer");
             _prayerTimer = new System.Timers.Timer(60000);
             _prayerTimer.Elapsed += PrayerTimer_Elapsed;
+
+            // Initialize time update timer (update UI every 30 seconds)
+            DiagnosticLogger.LogStartupStep("Setting up time update timer");
+            _timeUpdateTimer = new System.Timers.Timer(30000);
+            _timeUpdateTimer.Elapsed += TimeUpdateTimer_Elapsed;
             _prayerTimer.Start();
             DiagnosticLogger.LogStartupStep("Prayer timer started", "Interval: 60 seconds");
 
@@ -274,6 +285,13 @@ public partial class MainWindow : Window
 
         // Set home URL - using Google as default since no DefaultHomePage property exists
         _homeUrl = "https://www.google.com";
+
+        // Start time tracking for the current profile
+        if (_currentProfile != null)
+        {
+            await _timeTrackingService.StartTrackingAsync(_currentProfile.Id);
+            _timeUpdateTimer.Start();
+        }
     }
 
     private async Task ConfigureWebView()
@@ -294,7 +312,7 @@ public partial class MainWindow : Window
         settings.IsGeneralAutofillEnabled = false; // Always disabled for family safety
         settings.IsPasswordAutosaveEnabled = false; // Always disabled for security
         settings.AreDevToolsEnabled = false; // Disable dev tools for family safety
-        settings.AreDefaultContextMenusEnabled = true;
+        settings.AreDefaultContextMenusEnabled = true; // Enable context menus so we can customize them
         settings.AreHostObjectsAllowed = false;
         settings.IsWebMessageEnabled = false;
 
@@ -332,6 +350,10 @@ public partial class MainWindow : Window
         // Handle new window requests
         DiagnosticLogger.LogWebView2Event("ConfigureWebView", "Setting up new window handling");
         WebView.CoreWebView2.NewWindowRequested += CoreWebView2_NewWindowRequested;
+
+        // Set up custom context menu
+        DiagnosticLogger.LogWebView2Event("ConfigureWebView", "Setting up custom context menu");
+        WebView.CoreWebView2.ContextMenuRequested += CoreWebView2_ContextMenuRequested;
 
         DiagnosticLogger.LogWebView2Event("ConfigureWebView", "WebView2 configuration completed successfully");
     }
@@ -395,9 +417,83 @@ public partial class MainWindow : Window
 
     private void CoreWebView2_NewWindowRequested(object? sender, CoreWebView2NewWindowRequestedEventArgs e)
     {
-        // Handle new window requests - open in same window for family safety
+        // Handle new window requests - open in new window
         e.Handled = true;
-        WebView.CoreWebView2.Navigate(e.Uri);
+        OpenNewWindow(e.Uri);
+    }
+
+    private void CoreWebView2_ContextMenuRequested(object? sender, CoreWebView2ContextMenuRequestedEventArgs e)
+    {
+        try
+        {
+            Console.WriteLine("Context menu requested - event triggered");
+            DiagnosticLogger.LogInfo("ContextMenu", "Context menu requested event triggered");
+
+            // Clear default menu items and add our custom ones
+            e.MenuItems.Clear();
+
+            // Get current page info
+            var currentUrl = WebView.CoreWebView2?.Source ?? "";
+
+            // Add basic navigation items
+            if (WebView.CoreWebView2?.CanGoBack == true)
+            {
+                var backItem = WebView.CoreWebView2.Environment.CreateContextMenuItem(
+                    "Back", null, CoreWebView2ContextMenuItemKind.Command);
+                backItem.CustomItemSelected += (s, args) => WebView.CoreWebView2.GoBack();
+                e.MenuItems.Add(backItem);
+            }
+
+            if (WebView.CoreWebView2?.CanGoForward == true)
+            {
+                var forwardItem = WebView.CoreWebView2.Environment.CreateContextMenuItem(
+                    "Forward", null, CoreWebView2ContextMenuItemKind.Command);
+                forwardItem.CustomItemSelected += (s, args) => WebView.CoreWebView2.GoForward();
+                e.MenuItems.Add(forwardItem);
+            }
+
+            var reloadItem = WebView.CoreWebView2.Environment.CreateContextMenuItem(
+                "Reload", null, CoreWebView2ContextMenuItemKind.Command);
+            reloadItem.CustomItemSelected += (s, args) => WebView.CoreWebView2.Reload();
+            e.MenuItems.Add(reloadItem);
+
+            // Add separator
+            e.MenuItems.Add(WebView.CoreWebView2.Environment.CreateContextMenuItem(
+                "", null, CoreWebView2ContextMenuItemKind.Separator));
+
+            // Add basic text operations
+            var copyItem = WebView.CoreWebView2.Environment.CreateContextMenuItem(
+                "Copy", null, CoreWebView2ContextMenuItemKind.Command);
+            copyItem.CustomItemSelected += async (s, args) =>
+                await WebView.CoreWebView2.ExecuteScriptAsync("document.execCommand('copy')");
+            e.MenuItems.Add(copyItem);
+
+            var selectAllItem = WebView.CoreWebView2.Environment.CreateContextMenuItem(
+                "Select all", null, CoreWebView2ContextMenuItemKind.Command);
+            selectAllItem.CustomItemSelected += async (s, args) =>
+                await WebView.CoreWebView2.ExecuteScriptAsync("document.execCommand('selectAll')");
+            e.MenuItems.Add(selectAllItem);
+
+            // Add separator
+            e.MenuItems.Add(WebView.CoreWebView2.Environment.CreateContextMenuItem(
+                "", null, CoreWebView2ContextMenuItemKind.Separator));
+
+            // Add page actions
+            var newWindowItem = WebView.CoreWebView2.Environment.CreateContextMenuItem(
+                "Open in new window", null, CoreWebView2ContextMenuItemKind.Command);
+            newWindowItem.CustomItemSelected += (s, args) => OpenNewWindow(currentUrl);
+            e.MenuItems.Add(newWindowItem);
+
+            var bookmarkItem = WebView.CoreWebView2.Environment.CreateContextMenuItem(
+                "Bookmark this page", null, CoreWebView2ContextMenuItemKind.Command);
+            bookmarkItem.CustomItemSelected += (s, args) => Bookmark_Click(this, new RoutedEventArgs());
+            e.MenuItems.Add(bookmarkItem);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error creating context menu: {ex.Message}");
+            DiagnosticLogger.LogError("ContextMenu", "Error creating context menu", ex);
+        }
     }
 
     #region Navigation Methods
@@ -407,6 +503,31 @@ public partial class MainWindow : Window
         if (WebView.CoreWebView2 != null)
         {
             WebView.CoreWebView2.Navigate(_homeUrl);
+        }
+    }
+
+    private void OpenNewWindow(string url = "")
+    {
+        try
+        {
+            // Create a new instance of MainWindow
+            var newWindow = new MainWindow();
+            newWindow.Show();
+
+            // Navigate to the specified URL if provided
+            if (!string.IsNullOrEmpty(url))
+            {
+                // Wait a moment for the new window to initialize, then navigate
+                newWindow.Loaded += (s, e) =>
+                {
+                    newWindow.NavigateToUrl(url);
+                };
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening new window: {ex.Message}", "Error",
+                          MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 
@@ -525,16 +646,33 @@ public partial class MainWindow : Window
             UpdateSecurityIcon(url);
             DiagnosticLogger.LogWebView2Event("UI", "Address bar updated");
 
-            // Check time limits
+            // Check time window limits
             if (_currentProfile != null && _currentProfile.AllowedStartTime.HasValue && _currentProfile.AllowedEndTime.HasValue)
             {
-                DiagnosticLogger.LogWebView2Event("ContentFilter", "Checking time limits");
-                var now = DateTime.Now.TimeOfDay;
-                if (now < _currentProfile.AllowedStartTime || now > _currentProfile.AllowedEndTime)
+                DiagnosticLogger.LogWebView2Event("ContentFilter", "Checking time window limits");
+                if (!_timeTrackingService.IsWithinAllowedHours(_currentProfile))
                 {
                     e.Cancel = true;
-                    DiagnosticLogger.LogWebView2Event("ContentFilter", $"Navigation blocked - outside allowed time: {now}");
+                    DiagnosticLogger.LogWebView2Event("ContentFilter", "Navigation blocked - outside allowed time window");
                     BlockContent("Time Limit", "Browsing is not allowed at this time.");
+                    return;
+                }
+            }
+
+            // Check daily time limits
+            if (_currentProfile != null && _currentProfile.DailyTimeLimitMinutes > 0)
+            {
+                DiagnosticLogger.LogWebView2Event("ContentFilter", "Checking daily time limits");
+                var isLimitExceeded = await _timeTrackingService.IsTimeLimitExceededAsync(_currentProfile);
+                if (isLimitExceeded)
+                {
+                    e.Cancel = true;
+                    DiagnosticLogger.LogWebView2Event("ContentFilter", "Navigation blocked - daily time limit exceeded");
+                    var usedMinutes = await _timeTrackingService.GetTodayUsageMinutesAsync(_currentProfile.Id);
+                    BlockContent("Daily Time Limit Reached",
+                        $"You have reached your daily browsing limit of {_currentProfile.DailyTimeLimitMinutes} minutes.\n" +
+                        $"Time used today: {usedMinutes} minutes.\n\n" +
+                        "Please try again tomorrow or ask a parent to extend your time.");
                     return;
                 }
             }
@@ -804,6 +942,22 @@ public partial class MainWindow : Window
         }
     }
 
+    private async void TimeUpdateTimer_Elapsed(object? sender, ElapsedEventArgs e)
+    {
+        try
+        {
+            await Dispatcher.InvokeAsync(async () =>
+            {
+                await UpdateTimeDisplay();
+                UpdateStatusBar();
+            });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error updating time display: {ex.Message}");
+        }
+    }
+
     private async Task UpdatePrayerTimeDisplay()
     {
         try
@@ -840,6 +994,59 @@ public partial class MainWindow : Window
         }
     }
 
+
+
+    private async Task UpdateTimeDisplay()
+    {
+        if (_currentProfile == null) return;
+
+        try
+        {
+            // Update daily time limit display
+            if (_currentProfile.DailyTimeLimitMinutes > 0)
+            {
+                var remainingMinutes = await _timeTrackingService.GetRemainingMinutesAsync(_currentProfile);
+                var usedMinutes = await _timeTrackingService.GetTodayUsageMinutesAsync(_currentProfile.Id);
+
+                if (remainingMinutes >= 0)
+                {
+                    var hours = remainingMinutes / 60;
+                    var minutes = remainingMinutes % 60;
+                    TimeRemainingText.Text = $"Daily: {hours:D2}:{minutes:D2} left ({usedMinutes}/{_currentProfile.DailyTimeLimitMinutes}m)";
+                }
+                else
+                {
+                    TimeRemainingText.Text = $"Daily: Limit exceeded ({usedMinutes}/{_currentProfile.DailyTimeLimitMinutes}m)";
+                }
+            }
+            else if (_currentProfile.AllowedEndTime.HasValue)
+            {
+                // Show time window remaining if no daily limit but time window exists
+                var now = DateTime.Now.TimeOfDay;
+                var endTime = _currentProfile.AllowedEndTime.Value;
+
+                if (now < endTime)
+                {
+                    var remaining = endTime - now;
+                    TimeRemainingText.Text = $"Window: {remaining:hh\\:mm} left";
+                }
+                else
+                {
+                    TimeRemainingText.Text = "Window: Expired";
+                }
+            }
+            else
+            {
+                TimeRemainingText.Text = "";
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error updating time display: {ex.Message}");
+            TimeRemainingText.Text = "Time: Error";
+        }
+    }
+
     private void UpdateStatusBar()
     {
         if (_currentProfile != null)
@@ -849,27 +1056,6 @@ public partial class MainWindow : Window
 
         FilterStatusText.Text = _currentProfile?.EnableProfanityFilter == true ?
             "Filters: Active" : "Filters: Disabled";
-
-        // Update time remaining if time limits are enabled
-        if (_currentProfile?.AllowedEndTime.HasValue == true)
-        {
-            var now = DateTime.Now.TimeOfDay;
-            var endTime = _currentProfile.AllowedEndTime.Value;
-
-            if (now < endTime)
-            {
-                var remaining = endTime - now;
-                TimeRemainingText.Text = $"Time: {remaining:hh\\:mm}";
-            }
-            else
-            {
-                TimeRemainingText.Text = "Time: Expired";
-            }
-        }
-        else
-        {
-            TimeRemainingText.Text = "";
-        }
     }
 
     #endregion
@@ -1055,6 +1241,14 @@ public partial class MainWindow : Window
             return;
         }
 
+        // Handle Ctrl+N for new window
+        if (e.Key == Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+        {
+            NewWindow_Click(sender, new RoutedEventArgs());
+            e.Handled = true;
+            return;
+        }
+
         // Handle F11 for fullscreen toggle
         if (e.Key == Key.F11)
         {
@@ -1068,6 +1262,14 @@ public partial class MainWindow : Window
         try
         {
             if (WebView.CoreWebView2 == null || _currentProfile == null) return;
+
+            // Check if in incognito mode
+            if (_isIncognitoMode)
+            {
+                MessageBox.Show("Bookmarks cannot be saved in Private Mode.", "Private Mode",
+                              MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
 
             var bookmark = new Bookmark
             {
@@ -1137,18 +1339,79 @@ public partial class MainWindow : Window
     #region Menu Event Handlers
 
     // File Menu
-    private void NewTab_Click(object sender, RoutedEventArgs e)
+    private void NewWindow_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Implement tabbed browsing
-        MessageBox.Show("Tabbed browsing not yet implemented.", "New Tab",
-                      MessageBoxButton.OK, MessageBoxImage.Information);
+        OpenNewWindow();
     }
 
-    private void NewIncognitoTab_Click(object sender, RoutedEventArgs e)
+    private void IncognitoToggle_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Implement incognito mode
-        MessageBox.Show("Incognito mode not yet implemented.", "Incognito",
-                      MessageBoxButton.OK, MessageBoxImage.Information);
+        ToggleIncognitoMode();
+    }
+
+    private void ToggleIncognitoMode()
+    {
+        try
+        {
+            _isIncognitoMode = !_isIncognitoMode;
+
+            // Update UI to reflect incognito state
+            UpdateIncognitoUI();
+
+            // Update status
+            StatusText.Text = _isIncognitoMode ?
+                "Private mode enabled - browsing history will not be saved" :
+                "Private mode disabled - browsing history will be saved";
+
+            DiagnosticLogger.LogInfo("IncognitoMode", $"Incognito mode {(_isIncognitoMode ? "enabled" : "disabled")}");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error toggling incognito mode: {ex.Message}", "Error",
+                          MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private void UpdateIncognitoUI()
+    {
+        try
+        {
+            // Update toggle button state
+            IncognitoToggle.IsChecked = _isIncognitoMode;
+
+            // Update incognito indicator visibility
+            IncognitoIndicator.Visibility = _isIncognitoMode ? Visibility.Visible : Visibility.Collapsed;
+
+            // Update window title to show incognito mode
+            if (_isIncognitoMode)
+            {
+                if (!Title.Contains("(Private)"))
+                {
+                    Title = Title + " (Private)";
+                }
+            }
+            else
+            {
+                Title = Title.Replace(" (Private)", "");
+            }
+
+            // Update address bar appearance for incognito mode
+            if (_isIncognitoMode)
+            {
+                AddressBar.Background = new SolidColorBrush(Color.FromRgb(75, 0, 130)); // Dark purple for incognito
+                AddressBar.Foreground = Brushes.White;
+            }
+            else
+            {
+                // Reset to default appearance
+                AddressBar.ClearValue(TextBox.BackgroundProperty);
+                AddressBar.ClearValue(TextBox.ForegroundProperty);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error updating incognito UI: {ex.Message}");
+        }
     }
 
     private async void Settings_Click(object sender, RoutedEventArgs e)
@@ -1425,6 +1688,11 @@ public partial class MainWindow : Window
     {
         try
         {
+            // Stop time tracking
+            _timeTrackingService?.StopTrackingAsync().Wait();
+            _timeUpdateTimer?.Stop();
+            _timeUpdateTimer?.Dispose();
+
             _prayerTimer?.Stop();
             _prayerTimer?.Dispose();
             _httpClient?.Dispose();
