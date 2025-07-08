@@ -32,6 +32,8 @@ public partial class MainWindow : Window
     private readonly PrayerTimeService _prayerTimeService;
     private readonly WebViewContentFilterService _webViewContentFilter;
     private readonly TimeTrackingService _timeTrackingService;
+    private readonly BookmarkService _bookmarkService;
+    private readonly HistoryService _historyService;
     private readonly HttpClient _httpClient;
     private readonly System.Timers.Timer _prayerTimer;
     private readonly System.Timers.Timer _timeUpdateTimer;
@@ -117,6 +119,14 @@ public partial class MainWindow : Window
             DiagnosticLogger.LogStartupStep("Initializing TimeTrackingService");
             _timeTrackingService = new TimeTrackingService(_context);
             DiagnosticLogger.LogStartupStep("TimeTrackingService initialized");
+
+            DiagnosticLogger.LogStartupStep("Initializing BookmarkService");
+            _bookmarkService = new BookmarkService(_context);
+            DiagnosticLogger.LogStartupStep("BookmarkService initialized");
+
+            DiagnosticLogger.LogStartupStep("Initializing HistoryService");
+            _historyService = new HistoryService(_context);
+            DiagnosticLogger.LogStartupStep("HistoryService initialized");
 
             // Initialize prayer timer (check every minute)
             DiagnosticLogger.LogStartupStep("Setting up prayer timer");
@@ -291,6 +301,9 @@ public partial class MainWindow : Window
         {
             await _timeTrackingService.StartTrackingAsync(_currentProfile.Id);
             _timeUpdateTimer.Start();
+
+            // Populate favorites menu
+            await PopulateFavoritesMenuAsync();
         }
     }
 
@@ -873,17 +886,8 @@ public partial class MainWindow : Window
         {
             if (_currentProfile == null) return;
 
-            var historyEntry = new BrowsingHistory
-            {
-                UserProfileId = _currentProfile.Id,
-                Url = url,
-                Title = title,
-                VisitedAt = DateTime.Now,
-                IsIncognito = _isIncognitoMode
-            };
-
-            _context.BrowsingHistory.Add(historyEntry);
-            await _context.SaveChangesAsync();
+            // Use HistoryService to add or update history entry
+            await _historyService.AddOrUpdateHistoryAsync(_currentProfile.Id, url, title, _isIncognitoMode);
         }
         catch (Exception ex)
         {
@@ -1249,6 +1253,30 @@ public partial class MainWindow : Window
             return;
         }
 
+        // Handle Ctrl+H for history
+        if (e.Key == Key.H && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+        {
+            History_Click(sender, new RoutedEventArgs());
+            e.Handled = true;
+            return;
+        }
+
+        // Handle Ctrl+Shift+O for bookmark manager
+        if (e.Key == Key.O && (Keyboard.Modifiers & (ModifierKeys.Control | ModifierKeys.Shift)) == (ModifierKeys.Control | ModifierKeys.Shift))
+        {
+            Bookmarks_Click(sender, new RoutedEventArgs());
+            e.Handled = true;
+            return;
+        }
+
+        // Handle Ctrl+, for settings
+        if (e.Key == Key.OemComma && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+        {
+            Settings_Click(sender, new RoutedEventArgs());
+            e.Handled = true;
+            return;
+        }
+
         // Handle F11 for fullscreen toggle
         if (e.Key == Key.F11)
         {
@@ -1271,20 +1299,37 @@ public partial class MainWindow : Window
                 return;
             }
 
-            var bookmark = new Bookmark
+            var title = WebView.CoreWebView2.DocumentTitle ?? "Untitled";
+            var url = WebView.CoreWebView2.Source ?? "";
+
+            // Get existing folders for the dialog
+            var folders = await _bookmarkService.GetFoldersAsync(_currentProfile.Id);
+
+            // Show bookmark dialog
+            var dialog = new BookmarkEditDialog(folders);
+            dialog.Owner = this;
+
+            // Pre-populate with current page info
+            dialog.TitleTextBox.Text = title;
+            dialog.UrlTextBox.Text = url;
+
+            if (dialog.ShowDialog() == true)
             {
-                UserProfileId = _currentProfile.Id,
-                Title = WebView.CoreWebView2.DocumentTitle,
-                Url = WebView.CoreWebView2.Source,
-                CreatedAt = DateTime.Now,
-                FolderPath = "Default"
-            };
+                // Use BookmarkService to add bookmark
+                await _bookmarkService.AddBookmarkAsync(_currentProfile.Id,
+                    dialog.BookmarkTitle, dialog.BookmarkUrl,
+                    dialog.BookmarkDescription, dialog.BookmarkFolder);
 
-            _context.Bookmarks.Add(bookmark);
-            await _context.SaveChangesAsync();
+                StatusText.Text = "Bookmark added successfully!";
 
-            MessageBox.Show("Bookmark added successfully!", "Bookmark",
-                          MessageBoxButton.OK, MessageBoxImage.Information);
+                // Refresh favorites menu
+                await PopulateFavoritesMenuAsync();
+            }
+        }
+        catch (InvalidOperationException ex)
+        {
+            MessageBox.Show(ex.Message, "Duplicate Bookmark",
+                          MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         catch (Exception ex)
         {
@@ -1501,19 +1546,150 @@ public partial class MainWindow : Window
         }
     }
 
-    private void Bookmarks_Click(object sender, RoutedEventArgs e)
+    private async void Bookmarks_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Open bookmarks manager
-        MessageBox.Show("Bookmarks manager not yet implemented.", "Bookmarks",
-                      MessageBoxButton.OK, MessageBoxImage.Information);
+        try
+        {
+            if (_currentProfile != null)
+            {
+                var bookmarkManager = new BookmarkManagerWindow(_context, _currentProfile.Id);
+                bookmarkManager.Show();
+
+                // Refresh favorites menu when bookmark manager is closed
+                bookmarkManager.Closed += async (s, args) => await PopulateFavoritesMenuAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening bookmark manager: {ex.Message}", "Error",
+                          MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     private void History_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Open history window
-        MessageBox.Show("History window not yet implemented.", "History",
-                      MessageBoxButton.OK, MessageBoxImage.Information);
+        try
+        {
+            if (_currentProfile != null)
+            {
+                var historyWindow = new HistoryWindow(_context, _currentProfile.Id);
+                historyWindow.Show();
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error opening history window: {ex.Message}", "Error",
+                          MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
+
+    // Favorites Menu
+    private async Task PopulateFavoritesMenuAsync()
+    {
+        try
+        {
+            if (_currentProfile == null) return;
+
+            // Clear existing dynamic bookmark items (keep the first 3 items: Add Current Page, Manage Bookmarks, Separator)
+            var itemsToRemove = new List<MenuItem>();
+            for (int i = 3; i < FavoritesMenu.Items.Count; i++)
+            {
+                if (FavoritesMenu.Items[i] is MenuItem item)
+                {
+                    itemsToRemove.Add(item);
+                }
+            }
+
+            foreach (var item in itemsToRemove)
+            {
+                FavoritesMenu.Items.Remove(item);
+            }
+
+            // Get bookmarks grouped by folder
+            var bookmarks = await _bookmarkService.GetBookmarksAsync(_currentProfile.Id);
+            var bookmarksByFolder = bookmarks.GroupBy(b => b.FolderPath ?? "Default").OrderBy(g => g.Key);
+
+            foreach (var folderGroup in bookmarksByFolder)
+            {
+                if (folderGroup.Key == "Default")
+                {
+                    // Add bookmarks directly to the menu for Default folder
+                    foreach (var bookmark in folderGroup.OrderBy(b => b.SortOrder).ThenBy(b => b.Title).Take(10))
+                    {
+                        var menuItem = CreateBookmarkMenuItem(bookmark);
+                        FavoritesMenu.Items.Add(menuItem);
+                    }
+                }
+                else
+                {
+                    // Create a submenu for the folder
+                    var folderMenuItem = new MenuItem
+                    {
+                        Header = folderGroup.Key,
+                        Foreground = System.Windows.Media.Brushes.Black,
+                        Background = System.Windows.Media.Brushes.White
+                    };
+
+                    foreach (var bookmark in folderGroup.OrderBy(b => b.SortOrder).ThenBy(b => b.Title).Take(10))
+                    {
+                        var menuItem = CreateBookmarkMenuItem(bookmark);
+                        folderMenuItem.Items.Add(menuItem);
+                    }
+
+                    FavoritesMenu.Items.Add(folderMenuItem);
+                }
+            }
+
+            // Add "More..." option if there are many bookmarks
+            if (bookmarks.Count > 20)
+            {
+                FavoritesMenu.Items.Add(new Separator());
+                var moreMenuItem = new MenuItem
+                {
+                    Header = "More Bookmarks...",
+                    Foreground = System.Windows.Media.Brushes.Black,
+                    Background = System.Windows.Media.Brushes.White
+                };
+                moreMenuItem.Click += Bookmarks_Click;
+                FavoritesMenu.Items.Add(moreMenuItem);
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log error but don't show to user as this is background operation
+            Console.WriteLine($"Error populating favorites menu: {ex.Message}");
+        }
+    }
+
+    private MenuItem CreateBookmarkMenuItem(Bookmark bookmark)
+    {
+        var menuItem = new MenuItem
+        {
+            Header = bookmark.Title.Length > 50 ? bookmark.Title.Substring(0, 47) + "..." : bookmark.Title,
+            ToolTip = $"{bookmark.Title}\n{bookmark.Url}",
+            Tag = bookmark.Url,
+            Foreground = System.Windows.Media.Brushes.Black,
+            Background = System.Windows.Media.Brushes.White
+        };
+
+        menuItem.Click += (sender, e) =>
+        {
+            if (sender is MenuItem item && item.Tag is string url)
+            {
+                NavigateToUrl(url);
+            }
+        };
+
+        return menuItem;
+    }
+
+    private void AddBookmark_Click(object sender, RoutedEventArgs e)
+    {
+        // This will call the existing bookmark functionality
+        Bookmark_Click(sender, e);
+    }
+
+
 
     // Islamic Menu
     private void PrayerTimes_Click(object sender, RoutedEventArgs e)

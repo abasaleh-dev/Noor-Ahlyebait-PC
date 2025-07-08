@@ -1,0 +1,277 @@
+<Window x:Class="NoorAhlulBayt.Browser.BookmarkManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Bookmark Manager - Noor-e-AhlulBayt Browser"
+        Height="600" Width="900"
+        MinHeight="500" MinWidth="700"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="CanResize">
+
+    <Window.Resources>
+        <!-- Islamic Theme Colors -->
+        <SolidColorBrush x:Key="IslamicGreenBrush" Color="#2E7D32"/>
+        <SolidColorBrush x:Key="IslamicDarkGreenBrush" Color="#1B5E20"/>
+        <SolidColorBrush x:Key="IslamicLightGreenBrush" Color="#4CAF50"/>
+        <SolidColorBrush x:Key="IslamicSoftBlackBrush" Color="#1A1A1A"/>
+        <SolidColorBrush x:Key="IslamicLightBrush" Color="#F5F5F5"/>
+        <SolidColorBrush x:Key="IslamicGoldBrush" Color="#FFD700"/>
+
+        <!-- Button Styles -->
+        <Style x:Key="IslamicButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            <Setter Property="Background" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicDarkGreenBrush}"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+
+        <Style x:Key="IslamicSecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+
+        <!-- TextBox Styles -->
+        <Style x:Key="IslamicTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+            <Setter Property="materialDesign:HintAssist.Foreground" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Margin" Value="4"/>
+        </Style>
+
+        <!-- TreeView Styles -->
+        <Style x:Key="BookmarkTreeViewStyle" TargetType="TreeView">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8"/>
+        </Style>
+
+        <Style x:Key="BookmarkTreeViewItemStyle" TargetType="TreeViewItem">
+            <Setter Property="Padding" Value="4,2"/>
+            <Setter Property="Margin" Value="0,1"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{StaticResource IslamicLightGreenBrush}"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E8F5E8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- DataGrid Styles -->
+        <Style x:Key="BookmarkDataGridStyle" TargetType="DataGrid" BasedOn="{StaticResource MaterialDesignDataGrid}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#E0E0E0"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource IslamicLightBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="{StaticResource IslamicSoftBlackBrush}" Padding="16,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Star" Width="24" Height="24" 
+                                           Foreground="{StaticResource IslamicGoldBrush}" 
+                                           VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <TextBlock Text="Bookmark Manager" FontSize="18" FontWeight="Bold" 
+                             Foreground="White" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button x:Name="ImportButton" Content="Import" Style="{StaticResource IslamicSecondaryButtonStyle}"
+                            Click="ImportButton_Click" ToolTip="Import bookmarks from file"/>
+                    <Button x:Name="ExportButton" Content="Export" Style="{StaticResource IslamicSecondaryButtonStyle}"
+                            Click="ExportButton_Click" ToolTip="Export bookmarks to file"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Search and Filter Bar -->
+        <Border Grid.Row="1" Background="White" BorderBrush="{StaticResource IslamicGreenBrush}" 
+                BorderThickness="0,0,0,1" Padding="16,8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="SearchTextBox" Grid.Column="0" 
+                         Style="{StaticResource IslamicTextBoxStyle}"
+                         materialDesign:HintAssist.Hint="Search bookmarks..."
+                         TextChanged="SearchTextBox_TextChanged"
+                         Margin="0,4,8,4"/>
+
+                <ComboBox x:Name="FolderFilterComboBox" Grid.Column="1" 
+                          Width="150" Margin="4"
+                          materialDesign:HintAssist.Hint="Filter by folder"
+                          SelectionChanged="FolderFilterComboBox_SelectionChanged"/>
+
+                <Button x:Name="ClearSearchButton" Grid.Column="2" 
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        Click="ClearSearchButton_Click" ToolTip="Clear search"
+                        Margin="4">
+                    <materialDesign:PackIcon Kind="Close" Width="16" Height="16"/>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="2" Margin="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Folder Tree -->
+            <Border Grid.Column="0" Background="White" BorderBrush="{StaticResource IslamicGreenBrush}" 
+                    BorderThickness="1" CornerRadius="4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Folder Header -->
+                    <Border Grid.Row="0" Background="{StaticResource IslamicGreenBrush}" Padding="8">
+                        <TextBlock Text="Folders" FontWeight="Bold" Foreground="White"/>
+                    </Border>
+
+                    <!-- Folder TreeView -->
+                    <TreeView x:Name="FolderTreeView" Grid.Row="1" 
+                              Style="{StaticResource BookmarkTreeViewStyle}"
+                              BorderThickness="0"
+                              SelectedItemChanged="FolderTreeView_SelectedItemChanged"/>
+
+                    <!-- Folder Actions -->
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">
+                        <Button x:Name="AddFolderButton" Style="{StaticResource MaterialDesignIconButton}"
+                                Click="AddFolderButton_Click" ToolTip="Add new folder">
+                            <materialDesign:PackIcon Kind="FolderPlus" Width="16" Height="16"/>
+                        </Button>
+                        <Button x:Name="RenameFolderButton" Style="{StaticResource MaterialDesignIconButton}"
+                                Click="RenameFolderButton_Click" ToolTip="Rename selected folder">
+                            <materialDesign:PackIcon Kind="Pencil" Width="16" Height="16"/>
+                        </Button>
+                        <Button x:Name="DeleteFolderButton" Style="{StaticResource MaterialDesignIconButton}"
+                                Click="DeleteFolderButton_Click" ToolTip="Delete selected folder">
+                            <materialDesign:PackIcon Kind="Delete" Width="16" Height="16"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Splitter -->
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" 
+                          Background="{StaticResource IslamicGreenBrush}"/>
+
+            <!-- Bookmark List -->
+            <Border Grid.Column="2" Background="White" BorderBrush="{StaticResource IslamicGreenBrush}" 
+                    BorderThickness="1" CornerRadius="4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Bookmark Header -->
+                    <Border Grid.Row="0" Background="{StaticResource IslamicGreenBrush}" Padding="8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0" Text="Bookmarks" FontWeight="Bold" Foreground="White"/>
+                            
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Button x:Name="AddBookmarkButton" Style="{StaticResource MaterialDesignIconButton}"
+                                        Click="AddBookmarkButton_Click" ToolTip="Add new bookmark"
+                                        Foreground="White">
+                                    <materialDesign:PackIcon Kind="Plus" Width="16" Height="16"/>
+                                </Button>
+                                <Button x:Name="EditBookmarkButton" Style="{StaticResource MaterialDesignIconButton}"
+                                        Click="EditBookmarkButton_Click" ToolTip="Edit selected bookmark"
+                                        Foreground="White">
+                                    <materialDesign:PackIcon Kind="Pencil" Width="16" Height="16"/>
+                                </Button>
+                                <Button x:Name="DeleteBookmarkButton" Style="{StaticResource MaterialDesignIconButton}"
+                                        Click="DeleteBookmarkButton_Click" ToolTip="Delete selected bookmark"
+                                        Foreground="White">
+                                    <materialDesign:PackIcon Kind="Delete" Width="16" Height="16"/>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Bookmark DataGrid -->
+                    <DataGrid x:Name="BookmarkDataGrid" Grid.Row="1" 
+                              Style="{StaticResource BookmarkDataGridStyle}"
+                              BorderThickness="0"
+                              SelectionChanged="BookmarkDataGrid_SelectionChanged"
+                              MouseDoubleClick="BookmarkDataGrid_MouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*" MinWidth="150"/>
+                            <DataGridTextColumn Header="URL" Binding="{Binding Url}" Width="2*" MinWidth="200"/>
+                            <DataGridTextColumn Header="Folder" Binding="{Binding FolderPath}" Width="120"/>
+                            <DataGridTextColumn Header="Created" Binding="{Binding CreatedAt, StringFormat='{}{0:MM/dd/yyyy}'}" Width="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="3" Background="{StaticResource IslamicSoftBlackBrush}" Padding="16,8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock x:Name="StatusTextBlock" Grid.Column="0" 
+                           Text="Ready" Foreground="White" VerticalAlignment="Center"/>
+                
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Content="Close" Style="{StaticResource IslamicSecondaryButtonStyle}"
+                            Click="CloseButton_Click" Margin="0,0,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

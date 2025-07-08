@@ -277,6 +277,14 @@
                 <MenuItem Header="_History" Click="History_Click" InputGestureText="Ctrl+H"
                           Foreground="Black" Background="White"/>
             </MenuItem>
+            <MenuItem x:Name="FavoritesMenu" Header="_Favorites" Style="{StaticResource IslamicTopMenuItemStyle}">
+                <MenuItem Header="_Add Current Page" Click="AddBookmark_Click" InputGestureText="Ctrl+D"
+                          Foreground="Black" Background="White"/>
+                <MenuItem Header="_Manage Bookmarks" Click="Bookmarks_Click" InputGestureText="Ctrl+Shift+O"
+                          Foreground="Black" Background="White"/>
+                <Separator x:Name="FavoritesSeparator"/>
+                <!-- Dynamic bookmark items will be added here -->
+            </MenuItem>
             <MenuItem Header="_Islamic" Style="{StaticResource IslamicTopMenuItemStyle}">
                 <MenuItem Header="_Prayer Times" Click="PrayerTimes_Click" Foreground="Black" Background="White"/>
                 <MenuItem Header="_Qibla Direction" Click="QiblaDirection_Click" Foreground="Black" Background="White"/>

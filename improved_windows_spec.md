@@ -33,8 +33,7 @@
 
 ## ✅ Major Features Overview
 
-- Profiles with PIN protection
-- Profanity and NSFW filtering with overlays
+- Profiles with PIN protection and Settings per profile for how many Browser tabs can b opened by user MultiTab like defafult 3 Browser tabs per Profile or unlimited  Tabs- Profanity and NSFW filtering with overlays
 - Ad and tracker blocking (EasyList/EasyPrivacy)
 - SafeSearch enforcement
 - Time limits and scheduled access
@@ -60,6 +59,7 @@
   - Allowed hours (schedule)
   - Whitelist/Blacklist domains
   - PIN protection
+  - Browser Tabs Allowed Default 3
 - Profile selection on launch with optional "Remember Last Profile"
 - Admin PIN required for switching if enabled
 
@@ -132,9 +132,9 @@
 
 ---
 
-### Private/Incognito Mode
+### Private/Incognito Mode (experimental)
 
-- Incognito tabs with no local storage
+- Incognito tabs with no local storage (Defer)
 - Filtering still enforced
 - Incognito badge in UI
 

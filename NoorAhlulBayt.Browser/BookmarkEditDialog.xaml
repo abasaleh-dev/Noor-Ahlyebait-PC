@@ -1,0 +1,122 @@
+<Window x:Class="NoorAhlulBayt.Browser.BookmarkEditDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Edit Bookmark"
+        Height="400" Width="500"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <!-- Islamic Theme Colors -->
+        <SolidColorBrush x:Key="IslamicGreenBrush" Color="#2E7D32"/>
+        <SolidColorBrush x:Key="IslamicDarkGreenBrush" Color="#1B5E20"/>
+        <SolidColorBrush x:Key="IslamicLightGreenBrush" Color="#4CAF50"/>
+        <SolidColorBrush x:Key="IslamicSoftBlackBrush" Color="#1A1A1A"/>
+        <SolidColorBrush x:Key="IslamicLightBrush" Color="#F5F5F5"/>
+
+        <!-- Button Styles -->
+        <Style x:Key="IslamicButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            <Setter Property="Background" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicDarkGreenBrush}"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+
+        <Style x:Key="IslamicSecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+
+        <!-- TextBox Styles -->
+        <Style x:Key="IslamicTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+            <Setter Property="materialDesign:HintAssist.Foreground" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Margin" Value="0,8"/>
+        </Style>
+
+        <!-- ComboBox Style -->
+        <Style x:Key="IslamicComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+            <Setter Property="materialDesign:HintAssist.Foreground" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource IslamicGreenBrush}"/>
+            <Setter Property="Margin" Value="0,8"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource IslamicLightBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="{StaticResource IslamicSoftBlackBrush}" Padding="16,12">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Star" Width="20" Height="20" 
+                                       Foreground="White" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <TextBlock x:Name="HeaderTextBlock" Text="Edit Bookmark" FontSize="16" FontWeight="Bold" 
+                         Foreground="White" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Form Content -->
+        <ScrollViewer Grid.Row="1" Padding="24" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Title -->
+                <TextBox x:Name="TitleTextBox" 
+                         Style="{StaticResource IslamicTextBoxStyle}"
+                         materialDesign:HintAssist.Hint="Bookmark Title *"
+                         materialDesign:HintAssist.IsFloating="True"/>
+
+                <!-- URL -->
+                <TextBox x:Name="UrlTextBox" 
+                         Style="{StaticResource IslamicTextBoxStyle}"
+                         materialDesign:HintAssist.Hint="URL *"
+                         materialDesign:HintAssist.IsFloating="True"/>
+
+                <!-- Description -->
+                <TextBox x:Name="DescriptionTextBox" 
+                         Style="{StaticResource IslamicTextBoxStyle}"
+                         materialDesign:HintAssist.Hint="Description (Optional)"
+                         materialDesign:HintAssist.IsFloating="True"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         Height="80"/>
+
+                <!-- Folder -->
+                <ComboBox x:Name="FolderComboBox" 
+                          Style="{StaticResource IslamicComboBoxStyle}"
+                          materialDesign:HintAssist.Hint="Folder"
+                          materialDesign:HintAssist.IsFloating="True"
+                          IsEditable="True"/>
+
+                <!-- Validation Message -->
+                <TextBlock x:Name="ValidationTextBlock" 
+                           Foreground="Red" 
+                           FontSize="12" 
+                           Margin="0,8,0,0" 
+                           Visibility="Collapsed"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Buttons -->
+        <Border Grid.Row="2" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Padding="24,16">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancel" Style="{StaticResource IslamicSecondaryButtonStyle}"
+                        Click="CancelButton_Click" IsCancel="True"/>
+                <Button Content="Save" Style="{StaticResource IslamicButtonStyle}"
+                        Click="SaveButton_Click" IsDefault="True"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
