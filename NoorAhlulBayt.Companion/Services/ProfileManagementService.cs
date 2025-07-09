@@ -26,12 +26,17 @@ public class ProfileManagementService
     {
         try
         {
+            Console.WriteLine("ProfileManagementService: Starting GetAllProfilesAsync");
+
             var profiles = await _context.UserProfiles
                 .Include(p => p.DailyUsageSessions)
                 .Include(p => p.BrowserAttemptLogs)
+                .Where(p => p.Status != ProfileStatus.Archived) // Filter out archived profiles
                 .OrderBy(p => p.IsDefault ? 0 : 1)
                 .ThenBy(p => p.Name)
                 .ToListAsync();
+
+            Console.WriteLine($"ProfileManagementService: Found {profiles.Count} profiles in database");
 
             var profileInfos = new List<ProfileInfo>();
 

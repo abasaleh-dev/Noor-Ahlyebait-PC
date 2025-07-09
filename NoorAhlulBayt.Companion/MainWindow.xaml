@@ -116,12 +116,12 @@
             <Setter Property="Foreground" Value="#4CAF50"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
         </Style>
-        
+
         <Style x:Key="StatusWarningStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FF9800"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
         </Style>
-        
+
         <Style x:Key="StatusErrorStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#F44336"/>
             <Setter Property="FontWeight" Value="SemiBold"/>

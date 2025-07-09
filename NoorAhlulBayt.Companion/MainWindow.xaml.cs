@@ -7,6 +7,7 @@ using NoorAhlulBayt.Common.Models;
 using NoorAhlulBayt.Common.Services;
 using NoorAhlulBayt.Companion.Services;
 using NoorAhlulBayt.Companion.Dialogs;
+
 using Microsoft.EntityFrameworkCore;
 using WinForms = System.Windows.Forms;
 
@@ -37,6 +38,18 @@ public partial class MainWindow : Window
             .Options;
 
         _context = new ApplicationDbContext(options);
+
+        // Ensure database is created and up to date
+        try
+        {
+            _context.Database.EnsureCreated();
+            Console.WriteLine("Database initialized successfully");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database initialization error: {ex.Message}");
+        }
+
         _masterPasswordService = new MasterPasswordService(_context);
         _browserMonitor = new BrowserMonitoringService(_context);
         _otherBrowserMonitor = new OtherBrowserMonitoringService(_context);
@@ -634,29 +647,38 @@ public partial class MainWindow : Window
     {
         try
         {
+            Console.WriteLine("Starting LoadProfilesAsync...");
             ProfilesPanel.Children.Clear();
             NoProfilesMessage.Text = "Loading profiles...";
             NoProfilesMessage.Visibility = Visibility.Visible;
 
+            Console.WriteLine("Calling ProfileManagementService.GetAllProfilesAsync...");
             var profiles = await _profileManagementService.GetAllProfilesAsync();
+            Console.WriteLine($"Retrieved {profiles.Count} profiles from service");
 
             if (!profiles.Any())
             {
+                Console.WriteLine("No profiles found, showing message");
                 NoProfilesMessage.Text = "No profiles found. Click 'Add Profile' to create your first family profile.";
                 return;
             }
 
+            Console.WriteLine("Hiding no profiles message and creating profile cards");
             NoProfilesMessage.Visibility = Visibility.Collapsed;
 
             foreach (var profileInfo in profiles)
             {
+                Console.WriteLine($"Creating card for profile: {profileInfo.Profile.Name}");
                 var profileCard = CreateProfileCard(profileInfo);
                 ProfilesPanel.Children.Add(profileCard);
             }
+
+            Console.WriteLine($"Successfully loaded {profiles.Count} profiles");
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error loading profiles: {ex.Message}");
+            Console.WriteLine($"Stack trace: {ex.StackTrace}");
             NoProfilesMessage.Text = "Error loading profiles. Please try refreshing.";
         }
     }
@@ -773,16 +795,6 @@ public partial class MainWindow : Window
             VerticalAlignment = VerticalAlignment.Center
         };
 
-        var editButton = new System.Windows.Controls.Button
-        {
-            Content = "✏️ Edit",
-            Style = (Style)FindResource("ModernButtonStyle"),
-            Margin = new Thickness(0, 0, 8, 0),
-            Padding = new Thickness(12, 6, 12, 6),
-            FontSize = 11
-        };
-        editButton.Click += (s, e) => EditProfile_Click(profile.Id);
-
         var deleteButton = new System.Windows.Controls.Button
         {
             Content = "🗑️ Delete",
@@ -808,7 +820,6 @@ public partial class MainWindow : Window
         };
         switchButton.Click += (s, e) => SwitchProfile_Click(profile.Id, profile.Name);
 
-        buttonPanel.Children.Add(editButton);
         buttonPanel.Children.Add(deleteButton);
         buttonPanel.Children.Add(switchButton);
 
@@ -854,11 +865,27 @@ public partial class MainWindow : Window
 
     // Profile Management Event Handlers
 
-    private void AddProfile_Click(object sender, RoutedEventArgs e)
+    private async void AddProfile_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Open Add Profile dialog
-        System.Windows.MessageBox.Show("Add Profile dialog - Coming in next update!",
-            "Profile Management", MessageBoxButton.OK, MessageBoxImage.Information);
+        try
+        {
+            var dialog = new ProfileWizardDialog(_profileManagementService);
+            var result = dialog.ShowDialog();
+
+            if (result == true && dialog.ProfileCreated)
+            {
+                // Refresh the profiles list
+                await LoadProfilesAsync();
+
+                System.Windows.MessageBox.Show($"Profile '{dialog.ProfileRequest.Name}' has been created successfully!",
+                    "Profile Created", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show($"An error occurred while opening the profile creation dialog: {ex.Message}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     private void RefreshProfiles_Click(object sender, RoutedEventArgs e)
