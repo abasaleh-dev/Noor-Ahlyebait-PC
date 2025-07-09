@@ -346,11 +346,54 @@
             <!-- Profiles Tab -->
             <TabItem Header="👥 Profiles" Style="{StaticResource ModernTabItemStyle}">
                 <Grid>
-                    <TextBlock Text="Profile Management - Coming Soon" 
-                              FontSize="18" 
-                              Foreground="White" 
-                              HorizontalAlignment="Center" 
-                              VerticalAlignment="Center"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Profile Management Header -->
+                    <Border Grid.Row="0" Background="#22FFFFFF" Padding="20,15" Margin="10,10,10,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="👥 Family Profile Management"
+                                          FontSize="20" FontWeight="Bold"
+                                          Foreground="{StaticResource IslamicGoldBrush}"/>
+                                <TextBlock Text="Create and manage family member profiles with age-appropriate settings"
+                                          FontSize="12"
+                                          Foreground="White"
+                                          Margin="0,5,0,0"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Button Content="➕ Add Profile"
+                                        Style="{StaticResource ModernButtonStyle}"
+                                        Click="AddProfile_Click"
+                                        Margin="0,0,10,0"/>
+                                <Button Content="🔄 Refresh"
+                                        Style="{StaticResource ModernButtonStyle}"
+                                        Background="{StaticResource IslamicDarkGrayBrush}"
+                                        Click="RefreshProfiles_Click"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Profiles List -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="10">
+                        <StackPanel x:Name="ProfilesPanel">
+                            <!-- Profile cards will be populated dynamically -->
+                            <TextBlock x:Name="NoProfilesMessage"
+                                      Text="Loading profiles..."
+                                      FontSize="14"
+                                      Foreground="White"
+                                      HorizontalAlignment="Center"
+                                      Margin="0,50,0,0"/>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
 

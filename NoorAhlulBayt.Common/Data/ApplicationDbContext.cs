@@ -27,6 +27,20 @@ public class ApplicationDbContext : DbContext
         {
             entity.HasIndex(e => e.Name).IsUnique();
             entity.HasIndex(e => e.IsDefault);
+            entity.HasIndex(e => e.Status);
+            entity.HasIndex(e => e.FilteringLevel);
+
+            // Configure enum properties
+            entity.Property(e => e.FilteringLevel)
+                .HasConversion<int>();
+            entity.Property(e => e.Status)
+                .HasConversion<int>();
+            entity.Property(e => e.TimeRestrictionType)
+                .HasConversion<int>();
+            entity.Property(e => e.AllowedDays)
+                .HasConversion<int>();
+            entity.Property(e => e.FilteringCategories)
+                .HasConversion<int>();
 
             // One-to-many relationships
             entity.HasMany(e => e.Bookmarks)
@@ -43,6 +57,11 @@ public class ApplicationDbContext : DbContext
                   .WithOne(e => e.UserProfile)
                   .HasForeignKey(e => e.UserProfileId)
                   .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasMany(e => e.BrowserAttemptLogs)
+                  .WithOne(e => e.UserProfile)
+                  .HasForeignKey(e => e.UserProfileId)
+                  .OnDelete(DeleteBehavior.SetNull);
         });
 
         // Settings Configuration

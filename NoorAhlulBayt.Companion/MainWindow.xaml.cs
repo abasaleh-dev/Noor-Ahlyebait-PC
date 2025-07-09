@@ -2,12 +2,13 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Forms;
 using NoorAhlulBayt.Common.Data;
+using NoorAhlulBayt.Common.Models;
 using NoorAhlulBayt.Common.Services;
 using NoorAhlulBayt.Companion.Services;
 using NoorAhlulBayt.Companion.Dialogs;
 using Microsoft.EntityFrameworkCore;
+using WinForms = System.Windows.Forms;
 
 namespace NoorAhlulBayt.Companion;
 
@@ -22,6 +23,7 @@ public partial class MainWindow : Window
     private readonly SystemTrayService _systemTray;
     private readonly MasterPasswordService _masterPasswordService;
     private readonly DashboardService _dashboardService;
+    private readonly ProfileManagementService _profileManagementService;
     private readonly System.Timers.Timer _uiUpdateTimer;
     private bool _isClosing = false;
 
@@ -39,6 +41,7 @@ public partial class MainWindow : Window
         _browserMonitor = new BrowserMonitoringService(_context);
         _otherBrowserMonitor = new OtherBrowserMonitoringService(_context);
         _dashboardService = new DashboardService(_context, _browserMonitor, _otherBrowserMonitor);
+        _profileManagementService = new ProfileManagementService(_context);
         _systemTray = new SystemTrayService(_browserMonitor);
 
         // Subscribe to browser monitoring events
@@ -80,6 +83,9 @@ public partial class MainWindow : Window
 
             // Update initial dashboard
             UpdateDashboard();
+
+            // Load profiles
+            await LoadProfilesAsync();
 
             // Hide to tray on startup
             WindowState = WindowState.Minimized;
@@ -545,7 +551,7 @@ public partial class MainWindow : Window
                     ? "No browsers were running to block."
                     : $"Successfully blocked {blockedCount} browser(s).";
 
-                _systemTray.ShowNotification("Emergency Block", message, ToolTipIcon.Info);
+                _systemTray.ShowNotification("Emergency Block", message, WinForms.ToolTipIcon.Info);
 
                 System.Windows.MessageBox.Show(message, "Block Complete",
                     MessageBoxButton.OK, MessageBoxImage.Information);
@@ -579,7 +585,7 @@ public partial class MainWindow : Window
         {
             _browserMonitor.LaunchBrowser();
             _systemTray.ShowNotification("Browser Launched",
-                "The Islamic browser has been started.", ToolTipIcon.Info);
+                "The Islamic browser has been started.", WinForms.ToolTipIcon.Info);
 
             // Update dashboard immediately
             UpdateDashboard();
@@ -617,5 +623,284 @@ public partial class MainWindow : Window
             _systemTray?.Dispose();
             _context?.Dispose();
         }
+    }
+
+    // Profile Management Methods
+
+    /// <summary>
+    /// Load and display all profiles
+    /// </summary>
+    private async Task LoadProfilesAsync()
+    {
+        try
+        {
+            ProfilesPanel.Children.Clear();
+            NoProfilesMessage.Text = "Loading profiles...";
+            NoProfilesMessage.Visibility = Visibility.Visible;
+
+            var profiles = await _profileManagementService.GetAllProfilesAsync();
+
+            if (!profiles.Any())
+            {
+                NoProfilesMessage.Text = "No profiles found. Click 'Add Profile' to create your first family profile.";
+                return;
+            }
+
+            NoProfilesMessage.Visibility = Visibility.Collapsed;
+
+            foreach (var profileInfo in profiles)
+            {
+                var profileCard = CreateProfileCard(profileInfo);
+                ProfilesPanel.Children.Add(profileCard);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading profiles: {ex.Message}");
+            NoProfilesMessage.Text = "Error loading profiles. Please try refreshing.";
+        }
+    }
+
+    /// <summary>
+    /// Create a profile card UI element
+    /// </summary>
+    private Border CreateProfileCard(ProfileInfo profileInfo)
+    {
+        var profile = profileInfo.Profile;
+
+        var card = new Border
+        {
+            Style = (Style)FindResource("CardStyle"),
+            Margin = new Thickness(0, 0, 0, 15)
+        };
+
+        var grid = new Grid();
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+        // Avatar and basic info
+        var avatarPanel = new StackPanel
+        {
+            Orientation = System.Windows.Controls.Orientation.Horizontal,
+            VerticalAlignment = VerticalAlignment.Top
+        };
+
+        var avatarText = new TextBlock
+        {
+            Text = profile.AvatarIcon ?? "👤",
+            FontSize = 32,
+            Margin = new Thickness(0, 0, 15, 0),
+            VerticalAlignment = VerticalAlignment.Center
+        };
+
+        var infoPanel = new StackPanel();
+
+        var nameText = new TextBlock
+        {
+            Text = profile.Name,
+            FontSize = 16,
+            FontWeight = FontWeights.Bold,
+            Foreground = new SolidColorBrush(Colors.White),
+            Margin = new Thickness(0, 0, 0, 5)
+        };
+
+        var statusText = new TextBlock
+        {
+            Text = GetProfileStatusText(profile, profileInfo),
+            FontSize = 12,
+            Foreground = GetProfileStatusColor(profile, profileInfo),
+            Margin = new Thickness(0, 0, 0, 5)
+        };
+
+        var descriptionText = new TextBlock
+        {
+            Text = profile.Description ?? $"{profile.GetAgeCategory()} • {profile.FilteringLevel} Filtering",
+            FontSize = 11,
+            Foreground = new SolidColorBrush(Colors.LightGray),
+            TextWrapping = TextWrapping.Wrap
+        };
+
+        infoPanel.Children.Add(nameText);
+        infoPanel.Children.Add(statusText);
+        infoPanel.Children.Add(descriptionText);
+
+        avatarPanel.Children.Add(avatarText);
+        avatarPanel.Children.Add(infoPanel);
+
+        Grid.SetColumn(avatarPanel, 0);
+
+        // Usage statistics
+        var statsPanel = new StackPanel
+        {
+            Margin = new Thickness(20, 0, 20, 0),
+            VerticalAlignment = VerticalAlignment.Center
+        };
+
+        var todayUsageText = new TextBlock
+        {
+            Text = $"Today: {profileInfo.FormattedTodayUsage}",
+            FontSize = 11,
+            Foreground = new SolidColorBrush(Colors.LightBlue),
+            Margin = new Thickness(0, 0, 0, 3)
+        };
+
+        var weeklyUsageText = new TextBlock
+        {
+            Text = $"This week: {profileInfo.FormattedWeeklyUsage}",
+            FontSize = 11,
+            Foreground = new SolidColorBrush(Colors.LightBlue),
+            Margin = new Thickness(0, 0, 0, 3)
+        };
+
+        var lastUsedText = new TextBlock
+        {
+            Text = $"Last used: {profileInfo.FormattedLastUsed}",
+            FontSize = 10,
+            Foreground = new SolidColorBrush(Colors.Gray)
+        };
+
+        statsPanel.Children.Add(todayUsageText);
+        statsPanel.Children.Add(weeklyUsageText);
+        statsPanel.Children.Add(lastUsedText);
+
+        Grid.SetColumn(statsPanel, 1);
+
+        // Action buttons
+        var buttonPanel = new StackPanel
+        {
+            Orientation = System.Windows.Controls.Orientation.Horizontal,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+
+        var editButton = new System.Windows.Controls.Button
+        {
+            Content = "✏️ Edit",
+            Style = (Style)FindResource("ModernButtonStyle"),
+            Margin = new Thickness(0, 0, 8, 0),
+            Padding = new Thickness(12, 6, 12, 6),
+            FontSize = 11
+        };
+        editButton.Click += (s, e) => EditProfile_Click(profile.Id);
+
+        var deleteButton = new System.Windows.Controls.Button
+        {
+            Content = "🗑️ Delete",
+            Style = (Style)FindResource("ModernButtonStyle"),
+            Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(211, 47, 47)), // Red
+            Margin = new Thickness(0, 0, 8, 0),
+            Padding = new Thickness(12, 6, 12, 6),
+            FontSize = 11,
+            IsEnabled = !profile.IsDefault
+        };
+        deleteButton.Click += (s, e) => DeleteProfile_Click(profile.Id, profile.Name);
+
+        var switchButton = new System.Windows.Controls.Button
+        {
+            Content = profileInfo.IsCurrentlyActive ? "🔄 Active" : "🔄 Switch",
+            Style = (Style)FindResource("ModernButtonStyle"),
+            Background = profileInfo.IsCurrentlyActive
+                ? new SolidColorBrush(System.Windows.Media.Color.FromRgb(76, 175, 80)) // Green
+                : new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 150, 243)), // Blue
+            Padding = new Thickness(12, 6, 12, 6),
+            FontSize = 11,
+            IsEnabled = profile.Status == ProfileStatus.Active
+        };
+        switchButton.Click += (s, e) => SwitchProfile_Click(profile.Id, profile.Name);
+
+        buttonPanel.Children.Add(editButton);
+        buttonPanel.Children.Add(deleteButton);
+        buttonPanel.Children.Add(switchButton);
+
+        Grid.SetColumn(buttonPanel, 2);
+
+        grid.Children.Add(avatarPanel);
+        grid.Children.Add(statsPanel);
+        grid.Children.Add(buttonPanel);
+
+        card.Child = grid;
+        return card;
+    }
+
+    private string GetProfileStatusText(UserProfile profile, ProfileInfo profileInfo)
+    {
+        if (profileInfo.IsCurrentlyActive)
+            return "🟢 Currently Active";
+
+        return profile.Status switch
+        {
+            ProfileStatus.Active => "⚪ Ready",
+            ProfileStatus.Disabled => "🟡 Disabled",
+            ProfileStatus.Suspended => "🔴 Suspended",
+            ProfileStatus.Archived => "⚫ Archived",
+            _ => "❓ Unknown"
+        };
+    }
+
+    private SolidColorBrush GetProfileStatusColor(UserProfile profile, ProfileInfo profileInfo)
+    {
+        if (profileInfo.IsCurrentlyActive)
+            return new SolidColorBrush(Colors.LightGreen);
+
+        return profile.Status switch
+        {
+            ProfileStatus.Active => new SolidColorBrush(Colors.LightBlue),
+            ProfileStatus.Disabled => new SolidColorBrush(Colors.Orange),
+            ProfileStatus.Suspended => new SolidColorBrush(Colors.Red),
+            ProfileStatus.Archived => new SolidColorBrush(Colors.Gray),
+            _ => new SolidColorBrush(Colors.White)
+        };
+    }
+
+    // Profile Management Event Handlers
+
+    private void AddProfile_Click(object sender, RoutedEventArgs e)
+    {
+        // TODO: Open Add Profile dialog
+        System.Windows.MessageBox.Show("Add Profile dialog - Coming in next update!",
+            "Profile Management", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    private void RefreshProfiles_Click(object sender, RoutedEventArgs e)
+    {
+        _ = LoadProfilesAsync();
+    }
+
+    private void EditProfile_Click(int profileId)
+    {
+        // TODO: Open Edit Profile dialog
+        System.Windows.MessageBox.Show($"Edit Profile dialog for ID {profileId} - Coming in next update!",
+            "Profile Management", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    private async void DeleteProfile_Click(int profileId, string profileName)
+    {
+        var result = System.Windows.MessageBox.Show(
+            $"Are you sure you want to delete the profile '{profileName}'?\n\nThis action cannot be undone and will remove all associated data.",
+            "Delete Profile", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+        if (result == MessageBoxResult.Yes)
+        {
+            var (success, message) = await _profileManagementService.DeleteProfileAsync(profileId);
+
+            if (success)
+            {
+                System.Windows.MessageBox.Show("Profile deleted successfully.",
+                    "Profile Management", MessageBoxButton.OK, MessageBoxImage.Information);
+                await LoadProfilesAsync();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show($"Error deleting profile: {message}",
+                    "Profile Management", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+    }
+
+    private void SwitchProfile_Click(int profileId, string profileName)
+    {
+        // TODO: Implement profile switching with PIN verification
+        System.Windows.MessageBox.Show($"Profile switching for '{profileName}' - Coming in next update!",
+            "Profile Management", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 }
