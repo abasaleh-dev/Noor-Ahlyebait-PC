@@ -360,6 +360,62 @@ public class ProfileManagementService
         var random = new Random();
         return avatars[random.Next(avatars.Length)];
     }
+
+    /// <summary>
+    /// Get the currently active profile
+    /// </summary>
+    public async Task<UserProfile?> GetCurrentActiveProfileAsync()
+    {
+        try
+        {
+            // For now, we'll use the first non-archived profile as active
+            // In a full implementation, you'd track the active profile in settings or database
+            var activeProfile = await _context.UserProfiles
+                .Where(p => p.Status == ProfileStatus.Active)
+                .OrderBy(p => p.IsDefault ? 0 : 1)
+                .FirstOrDefaultAsync();
+
+            return activeProfile;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error getting current active profile: {ex.Message}");
+            return null;
+        }
+    }
+
+
+
+    /// <summary>
+    /// Switch to a specific profile
+    /// </summary>
+    public async Task<bool> SwitchToProfileAsync(int profileId)
+    {
+        try
+        {
+            var profile = await _context.UserProfiles.FindAsync(profileId);
+            if (profile == null || profile.Status != ProfileStatus.Active)
+                return false;
+
+            // In a full implementation, you would:
+            // 1. Update application settings to track current profile
+            // 2. Apply profile-specific browser settings
+            // 3. Update monitoring configurations
+            // 4. Log the profile switch event
+
+            Console.WriteLine($"Switched to profile: {profile.Name} (ID: {profile.Id})");
+
+            // For now, we'll just log the switch
+            // TODO: Implement actual profile switching logic
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error switching to profile: {ex.Message}");
+            return false;
+        }
+    }
 }
 
 /// <summary>

@@ -69,6 +69,69 @@
             </Setter>
         </Style>
 
+        <!-- Secondary Button Style -->
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
+            <Setter Property="Background" Value="{StaticResource IslamicDarkGrayBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#616161"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#424242"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Settings Navigation Button Style -->
+        <Style x:Key="SettingsNavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,15"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#33FFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#44FFFFFF"/>
+                            </Trigger>
+                            <!-- Active state will be handled programmatically -->
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!-- WPF TabControl Style -->
         <Style x:Key="ModernTabControlStyle" TargetType="TabControl">
             <Setter Property="Background" Value="Transparent"/>
@@ -411,11 +474,64 @@
             <!-- Settings Tab -->
             <TabItem Header="⚙️ Settings" Style="{StaticResource ModernTabItemStyle}">
                 <Grid>
-                    <TextBlock Text="Settings Panel - Coming Soon" 
-                              FontSize="18" 
-                              Foreground="White" 
-                              HorizontalAlignment="Center" 
-                              VerticalAlignment="Center"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left Navigation Panel -->
+                    <Border Grid.Column="0" Background="#1A1A1A" Padding="0">
+                        <StackPanel>
+                            <!-- Settings Header -->
+                            <Border Background="{StaticResource IslamicGreenBrush}" Padding="20,15">
+                                <StackPanel>
+                                    <TextBlock Text="⚙️ Settings"
+                                              FontSize="18" FontWeight="Bold"
+                                              Foreground="White"
+                                              HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Configuration Hub"
+                                              FontSize="11"
+                                              Foreground="White"
+                                              HorizontalAlignment="Center"
+                                              Opacity="0.8"/>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Navigation Menu -->
+                            <StackPanel Margin="0,10,0,0">
+                                <Button x:Name="NavPrayerSettings"
+                                       Content="🕌 Prayer Time Settings"
+                                       Style="{StaticResource SettingsNavButtonStyle}"
+                                       Click="NavPrayerSettings_Click"
+                                       Tag="PrayerSettings"/>
+
+                                <Button x:Name="NavContentFiltering"
+                                       Content="🛡️ Content Filtering"
+                                       Style="{StaticResource SettingsNavButtonStyle}"
+                                       Click="NavContentFiltering_Click"
+                                       Tag="ContentFiltering"/>
+
+                                <Button x:Name="NavGeneralSettings"
+                                       Content="⚙️ General Settings"
+                                       Style="{StaticResource SettingsNavButtonStyle}"
+                                       Click="NavGeneralSettings_Click"
+                                       Tag="GeneralSettings"/>
+
+                                <Button x:Name="NavSettingsManagement"
+                                       Content="💾 Settings Management"
+                                       Style="{StaticResource SettingsNavButtonStyle}"
+                                       Click="NavSettingsManagement_Click"
+                                       Tag="SettingsManagement"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Right Content Panel -->
+                    <Border Grid.Column="1" Background="#2C2C2C" Padding="0">
+                        <ScrollViewer x:Name="SettingsContentScrollViewer" VerticalScrollBarVisibility="Auto">
+                            <ContentPresenter x:Name="SettingsContentPresenter" Margin="20"/>
+                        </ScrollViewer>
+                    </Border>
                 </Grid>
             </TabItem>
 

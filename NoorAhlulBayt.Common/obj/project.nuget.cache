@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5VgZIq0gAoE=",
+  "dgSpecHash": "BAQR39qpjT0=",
   "success": true,
   "projectFilePath": "C:\\Users\\Administrator\\Documents\\Noor-Ahlyebait-PC\\NoorAhlulBayt.Common\\NoorAhlulBayt.Common.csproj",
   "expectedPackageFiles": [
@@ -37,7 +37,8 @@
     "C:\\Users\\Administrator\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\system.numerics.tensors\\9.0.0\\system.numerics.tensors.9.0.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.6\\system.security.cryptography.protecteddata.9.0.6.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\system.text.json\\9.0.6\\system.text.json.9.0.6.nupkg.sha512"
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.text.json\\9.0.6\\system.text.json.9.0.6.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.windows.extensions\\9.0.7\\system.windows.extensions.9.0.7.nupkg.sha512"
   ],
   "logs": []
 }

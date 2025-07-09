@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -25,7 +26,10 @@ public partial class MainWindow : Window
     private readonly MasterPasswordService _masterPasswordService;
     private readonly DashboardService _dashboardService;
     private readonly ProfileManagementService _profileManagementService;
+    private readonly SettingsService _settingsService;
+    private readonly PrayerTimeService _prayerTimeService;
     private readonly System.Timers.Timer _uiUpdateTimer;
+    private string _currentSettingsPanel = "";
     private bool _isClosing = false;
 
     public MainWindow()
@@ -55,6 +59,8 @@ public partial class MainWindow : Window
         _otherBrowserMonitor = new OtherBrowserMonitoringService(_context);
         _dashboardService = new DashboardService(_context, _browserMonitor, _otherBrowserMonitor);
         _profileManagementService = new ProfileManagementService(_context);
+        _settingsService = new SettingsService();
+        _prayerTimeService = new PrayerTimeService(new HttpClient(), _context, _settingsService);
         _systemTray = new SystemTrayService(_browserMonitor);
 
         // Subscribe to browser monitoring events
@@ -100,9 +106,23 @@ public partial class MainWindow : Window
             // Load profiles
             await LoadProfilesAsync();
 
-            // Hide to tray on startup
-            WindowState = WindowState.Minimized;
-            Hide();
+            // Initialize settings panel with prayer settings as default
+            ShowSettingsPanel("PrayerSettings");
+
+            // Check if we should minimize to tray on startup
+            var settings = _settingsService.GetSettings();
+            if (settings.General.StartMinimized)
+            {
+                WindowState = WindowState.Minimized;
+                Hide();
+            }
+            else
+            {
+                // Show the window normally after successful authentication
+                Show();
+                WindowState = WindowState.Normal;
+                Activate();
+            }
         }
         catch (Exception ex)
         {
@@ -151,13 +171,13 @@ public partial class MainWindow : Window
 
             // Verify master password
             Console.WriteLine("Requesting master password verification");
-            
+
             // Show the window temporarily for the dialog
             Show();
             WindowState = WindowState.Normal;
-            
+
             var verificationSuccess = MasterPasswordVerificationDialog.ShowDialog(this, _context);
-            
+
             if (!verificationSuccess)
             {
                 System.Windows.MessageBox.Show(
@@ -167,6 +187,8 @@ public partial class MainWindow : Window
             }
 
             Console.WriteLine("Master password verification successful");
+            // Keep window visible after successful authentication
+            // Window visibility will be controlled by startup settings later
             return true;
         }
         catch (Exception ex)
@@ -924,10 +946,292 @@ public partial class MainWindow : Window
         }
     }
 
-    private void SwitchProfile_Click(int profileId, string profileName)
+    private async void SwitchProfile_Click(int profileId, string profileName)
     {
-        // TODO: Implement profile switching with PIN verification
-        System.Windows.MessageBox.Show($"Profile switching for '{profileName}' - Coming in next update!",
-            "Profile Management", MessageBoxButton.OK, MessageBoxImage.Information);
+        try
+        {
+            var dialog = new ProfileSwitchDialog(_profileManagementService);
+            var result = dialog.ShowDialog();
+
+            if (result == true && dialog.ProfileSwitched)
+            {
+                // Refresh the profiles list to show updated active status
+                await LoadProfilesAsync();
+
+                // Update dashboard to reflect new active profile
+                UpdateDashboard();
+
+                System.Windows.MessageBox.Show($"Successfully switched to profile '{dialog.NewActiveProfile?.Name}'!",
+                    "Profile Switched", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show($"Error opening profile switch dialog: {ex.Message}",
+                "Profile Management", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
+
+    #region Settings Navigation
+
+    public string CurrentSettingsPanel
+    {
+        get => _currentSettingsPanel;
+        set
+        {
+            _currentSettingsPanel = value;
+            UpdateNavigationButtonStyles();
+        }
+    }
+
+    private void NavPrayerSettings_Click(object sender, RoutedEventArgs e)
+    {
+        ShowSettingsPanel("PrayerSettings");
+    }
+
+    private void NavContentFiltering_Click(object sender, RoutedEventArgs e)
+    {
+        ShowSettingsPanel("ContentFiltering");
+    }
+
+    private void NavGeneralSettings_Click(object sender, RoutedEventArgs e)
+    {
+        ShowSettingsPanel("GeneralSettings");
+    }
+
+    private void NavSettingsManagement_Click(object sender, RoutedEventArgs e)
+    {
+        ShowSettingsPanel("SettingsManagement");
+    }
+
+    private void ShowSettingsPanel(string panelName)
+    {
+        try
+        {
+            CurrentSettingsPanel = panelName;
+
+            System.Windows.Controls.UserControl? content = panelName switch
+            {
+                "PrayerSettings" => new Controls.PrayerTimeSettingsControl(_settingsService, _prayerTimeService),
+                "ContentFiltering" => CreateContentFilteringPanel(),
+                "GeneralSettings" => CreateGeneralSettingsPanel(),
+                "SettingsManagement" => CreateSettingsManagementPanel(),
+                _ => null
+            };
+
+            if (content != null)
+            {
+                SettingsContentPresenter.Content = content;
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show($"Error loading settings panel: {ex.Message}",
+                "Settings Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private void UpdateNavigationButtonStyles()
+    {
+        // Update button styles based on current panel
+        var buttons = new[]
+        {
+            (NavPrayerSettings, "PrayerSettings"),
+            (NavContentFiltering, "ContentFiltering"),
+            (NavGeneralSettings, "GeneralSettings"),
+            (NavSettingsManagement, "SettingsManagement")
+        };
+
+        foreach (var (button, panelName) in buttons)
+        {
+            if (panelName == CurrentSettingsPanel)
+            {
+                button.Background = (System.Windows.Media.Brush)FindResource("IslamicGreenBrush");
+                button.FontWeight = FontWeights.Bold;
+            }
+            else
+            {
+                button.Background = System.Windows.Media.Brushes.Transparent;
+                button.FontWeight = FontWeights.Normal;
+            }
+        }
+    }
+
+    private System.Windows.Controls.UserControl CreateContentFilteringPanel()
+    {
+        return new Controls.ContentFilteringSettingsControl(_settingsService);
+    }
+
+    private System.Windows.Controls.UserControl CreateGeneralSettingsPanel()
+    {
+        return new Controls.GeneralSettingsControl(_settingsService, _context);
+    }
+
+
+
+    private System.Windows.Controls.UserControl CreateSettingsManagementPanel()
+    {
+        var panel = new System.Windows.Controls.UserControl();
+        var stackPanel = new StackPanel();
+
+        var header = new TextBlock
+        {
+            Text = "💾 Settings Management",
+            FontSize = 20,
+            FontWeight = FontWeights.Bold,
+            Foreground = (System.Windows.Media.Brush)FindResource("IslamicGoldBrush"),
+            Margin = new Thickness(0, 0, 0, 20)
+        };
+        stackPanel.Children.Add(header);
+
+        // Export/Import/Reset buttons
+        var buttonPanel = new StackPanel { Orientation = System.Windows.Controls.Orientation.Horizontal, Margin = new Thickness(0, 20, 0, 0) };
+
+        var exportButton = new System.Windows.Controls.Button
+        {
+            Content = "📤 Export Settings",
+            Style = (Style)FindResource("ModernButtonStyle"),
+            Margin = new Thickness(0, 0, 10, 0)
+        };
+        exportButton.Click += ExportSettings_Click;
+        buttonPanel.Children.Add(exportButton);
+
+        var importButton = new System.Windows.Controls.Button
+        {
+            Content = "📥 Import Settings",
+            Style = (Style)FindResource("ModernButtonStyle"),
+            Margin = new Thickness(0, 0, 10, 0)
+        };
+        importButton.Click += ImportSettings_Click;
+        buttonPanel.Children.Add(importButton);
+
+        var resetButton = new System.Windows.Controls.Button
+        {
+            Content = "🔄 Reset to Defaults",
+            Style = (Style)FindResource("SecondaryButtonStyle")
+        };
+        resetButton.Click += ResetSettings_Click;
+        buttonPanel.Children.Add(resetButton);
+
+        stackPanel.Children.Add(buttonPanel);
+
+        panel.Content = stackPanel;
+        return panel;
+    }
+
+    private async void ExportSettings_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var saveDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                Title = "Export Settings",
+                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*",
+                DefaultExt = "json",
+                FileName = $"NoorAhlulBayt_Settings_{DateTime.Now:yyyyMMdd_HHmmss}.json"
+            };
+
+            if (saveDialog.ShowDialog() == true)
+            {
+                var success = await _settingsService.ExportSettingsAsync(saveDialog.FileName);
+                if (success)
+                {
+                    System.Windows.MessageBox.Show($"Settings exported successfully to:\n{saveDialog.FileName}",
+                        "Export Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Failed to export settings. Please try again.",
+                        "Export Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show($"Error exporting settings: {ex.Message}",
+                "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private async void ImportSettings_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var openDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Title = "Import Settings",
+                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*",
+                DefaultExt = "json"
+            };
+
+            if (openDialog.ShowDialog() == true)
+            {
+                var result = System.Windows.MessageBox.Show(
+                    "Importing settings will overwrite your current configuration. Do you want to continue?",
+                    "Confirm Import", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    var success = await _settingsService.ImportSettingsAsync(openDialog.FileName);
+                    if (success)
+                    {
+                        System.Windows.MessageBox.Show("Settings imported successfully! The application will restart to apply changes.",
+                            "Import Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        // Restart application
+                        System.Windows.Forms.Application.Restart();
+                        System.Windows.Application.Current.Shutdown();
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Failed to import settings. Please check the file format.",
+                            "Import Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show($"Error importing settings: {ex.Message}",
+                "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private async void ResetSettings_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var result = System.Windows.MessageBox.Show(
+                "This will reset all settings to their default values. This action cannot be undone. Do you want to continue?",
+                "Confirm Reset", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                var success = await _settingsService.ResetToDefaultsAsync();
+                if (success)
+                {
+                    System.Windows.MessageBox.Show("Settings have been reset to defaults successfully!",
+                        "Reset Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Failed to reset settings. Please try again.",
+                        "Reset Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show($"Error resetting settings: {ex.Message}",
+                "Reset Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private void ApplySettings_Click(object sender, RoutedEventArgs e)
+    {
+        System.Windows.MessageBox.Show("All settings are applied automatically when saved. No manual application needed.",
+            "Settings Applied", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    #endregion
 }

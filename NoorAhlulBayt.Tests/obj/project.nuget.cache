@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ePTvF7ivle0=",
+  "dgSpecHash": "3WKBI3pNhog=",
   "success": true,
   "projectFilePath": "C:\\Users\\Administrator\\Documents\\Noor-Ahlyebait-PC\\NoorAhlulBayt.Tests\\NoorAhlulBayt.Tests.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,7 @@
     "C:\\Users\\Administrator\\.nuget\\packages\\system.reflection.metadata\\1.6.0\\system.reflection.metadata.1.6.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.6\\system.security.cryptography.protecteddata.9.0.6.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\system.text.json\\9.0.6\\system.text.json.9.0.6.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.windows.extensions\\9.0.7\\system.windows.extensions.9.0.7.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\xunit\\2.9.2\\xunit.2.9.2.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\xunit.abstractions\\2.0.3\\xunit.abstractions.2.0.3.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\xunit.analyzers\\1.16.0\\xunit.analyzers.1.16.0.nupkg.sha512",

@@ -57,6 +57,7 @@ C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\SQLitePCLRaw.provider.e_sqlite3.dll
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\System.Numerics.Tensors.dll
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\System.Windows.Extensions.dll
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\xunit.abstractions.dll
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\xunit.assert.dll
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\xunit.core.dll
@@ -167,6 +168,7 @@ C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\runtimes\win\lib\net9.0\System.Windows.Extensions.dll
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Core.dll
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.WinForms.dll
 C:\Users\Administrator\Documents\Noor-Ahlyebait-PC\NoorAhlulBayt.Tests\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Wpf.dll

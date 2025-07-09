@@ -555,23 +555,46 @@ public class ContentFilterService
 
     private HashSet<string> LoadProfanityWords()
     {
-        // Comprehensive profanity word list for Islamic family-safe browsing
+        // Comprehensive multilingual profanity word list for Islamic family-safe browsing
         return new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             // Basic profanity
             "damn", "hell", "crap", "stupid", "idiot", "moron", "dumb", "suck", "sucks",
             "hate", "kill", "die", "death", "murder", "violence", "fight", "war",
 
-            // Stronger profanity
+            // English offensive terms (from provided list)
             "fuck", "fucking", "fucked", "fucker", "shit", "shitting", "shitty", "bullshit",
             "bitch", "bitching", "ass", "asshole", "bastard", "piss", "pissed", "pissing",
+            "cock", "pussy", "dick", "slut", "whore", "porn", "sex", "nude", "xxx",
 
-            // Sexual content (comprehensive for Islamic family safety)
-            "sex", "sexual", "sexy", "porn", "porno", "pornography", "nude", "naked", "nudity",
-            "boobs", "breast", "tits", "nipple", "dick", "cock", "penis", "pussy", "vagina",
+            // Extended English sexual content (comprehensive for Islamic family safety)
+            "sexual", "sexy", "porno", "pornography", "naked", "nudity",
+            "boobs", "breast", "tits", "nipple", "penis", "vagina", "cunt",
             "orgasm", "masturbate", "masturbation", "erotic", "fetish", "kinky", "horny",
-            "slut", "whore", "prostitute", "escort", "stripper", "hooker", "brothel",
-            "adult", "xxx", "18+", "nsfw", "mature", "explicit", "hardcore", "softcore",
+            "prostitute", "escort", "stripper", "hooker", "brothel",
+            "adult", "18+", "nsfw", "mature", "explicit", "hardcore", "softcore",
+
+            // Hindi/Devanagari offensive terms (from provided list)
+            "चूत", "choot", "लंड", "lund", "गांड", "gaand", "भोसड़ा", "bhosda",
+            "मादरचोद", "madarchod", "बहनचोद", "behanchod", "हरामी", "haraami",
+            "कमीना", "kameena", "रंडी", "randi", "चुतिया", "chutiya", "फट्टू", "fattu",
+            "नालायक", "nalayak",
+
+            // Urdu offensive terms (from provided list)
+            "چوت", "لنڈ", "گاند", "بیکچودی", "bekchodi", "مادرچود", "بہنچود",
+            "حرامی", "کمنی", "kamini", "کنجر", "kanjar", "کنجری", "kanjari",
+            "زالیل", "zaleel",
+
+            // Arabic offensive terms (from provided list)
+            "كس أمك", "kus ummak", "ابن الكلب", "ibn al kalb", "حمار", "himar",
+            "طز فيك", "tozz feek", "يا شارموطة", "ya sharmouta", "يا ابن الشرموطة", "ya ibn al sharmouta",
+            "كل خرة", "kol khara", "الله ياخذك", "allah yakhthek", "عيرة فيك", "ayreh feek",
+            "تلحس تيزي", "telhas teezy",
+
+            // Persian/Farsi offensive terms (from provided list)
+            "کُس", "kos", "کون", "koon", "جنده", "jendeh", "فاحشه", "faahesheh",
+            "سکس", "seks", "برهنه", "barahneh", "پورنو", "porno", "مادرجنده", "mādarjendeh",
+            "کُس کِش", "kos kesh", "کونی", "kooni", "لاشی", "lāshi", "خارکُسسه", "khārkosseh",
 
             // Gambling and vice
             "casino", "gambling", "poker", "blackjack", "slots", "betting", "bet", "wager",

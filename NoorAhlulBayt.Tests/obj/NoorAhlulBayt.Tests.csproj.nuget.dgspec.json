@@ -163,6 +163,10 @@
             "System.Security.Cryptography.ProtectedData": {
               "target": "Package",
               "version": "[9.0.6, )"
+            },
+            "System.Windows.Extensions": {
+              "target": "Package",
+              "version": "[9.0.7, )"
             }
           },
           "imports": [
