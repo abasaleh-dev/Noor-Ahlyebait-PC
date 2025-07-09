@@ -272,6 +272,9 @@
                 <MenuItem Header="_Full Screen" Click="FullScreen_Click" InputGestureText="F11"
                           Foreground="Black" Background="White"/>
                 <Separator/>
+                <MenuItem x:Name="DebugConsoleMenuItem" Header="Show _Debug Console" Click="ToggleDebugConsole_Click"
+                          Foreground="Black" Background="White"/>
+                <Separator/>
                 <MenuItem Header="_Bookmarks" Click="Bookmarks_Click" InputGestureText="Ctrl+Shift+O"
                           Foreground="Black" Background="White"/>
                 <MenuItem Header="_History" Click="History_Click" InputGestureText="Ctrl+H"

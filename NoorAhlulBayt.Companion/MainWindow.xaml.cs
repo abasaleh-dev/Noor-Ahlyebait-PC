@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.IO;
 using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,9 +37,10 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        // Initialize database context
+        // Initialize database context - Use shared database path
+        var sharedDbPath = GetSharedDatabasePath();
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseSqlite("Data Source=companion.db")
+            .UseSqlite($"Data Source={sharedDbPath}")
             .Options;
 
         _context = new ApplicationDbContext(options);
@@ -108,6 +110,9 @@ public partial class MainWindow : Window
 
             // Initialize settings panel with prayer settings as default
             ShowSettingsPanel("PrayerSettings");
+
+            // Initialize monitoring tab
+            InitializeMonitoringTab();
 
             // Check if we should minimize to tray on startup
             var settings = _settingsService.GetSettings();
@@ -1067,7 +1072,22 @@ public partial class MainWindow : Window
         return new Controls.GeneralSettingsControl(_settingsService, _context);
     }
 
-
+    /// <summary>
+    /// Initialize the monitoring tab with the monitoring control
+    /// </summary>
+    private void InitializeMonitoringTab()
+    {
+        try
+        {
+            var monitoringControl = new Controls.MonitoringSettingsControl(_settingsService, _dashboardService, _context);
+            MonitoringContentPresenter.Content = monitoringControl;
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show($"Error initializing monitoring tab: {ex.Message}",
+                "Monitoring Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
 
     private System.Windows.Controls.UserControl CreateSettingsManagementPanel()
     {
@@ -1231,6 +1251,19 @@ public partial class MainWindow : Window
     {
         System.Windows.MessageBox.Show("All settings are applied automatically when saved. No manual application needed.",
             "Settings Applied", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    /// <summary>
+    /// Get the shared database path used by both Companion and Browser applications
+    /// </summary>
+    private static string GetSharedDatabasePath()
+    {
+        // Use a shared location that both applications can access
+        var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        var appFolder = Path.Combine(appDataPath, "NoorAhlulBayt");
+        Directory.CreateDirectory(appFolder);
+
+        return Path.Combine(appFolder, "noor_family_browser.db");
     }
 
     #endregion

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows;
 using NoorAhlulBayt.Common.Services;
+using NoorAhlulBayt.Browser.Services;
 
 namespace NoorAhlulBayt.Browser;
 
@@ -10,13 +11,16 @@ namespace NoorAhlulBayt.Browser;
 /// </summary>
 public partial class App : Application
 {
-    protected override void OnStartup(StartupEventArgs e)
+    protected override async void OnStartup(StartupEventArgs e)
     {
         try
         {
             // Initialize logging system first
             DiagnosticLogger.Initialize("NoorAhlulBayt.Browser");
             DiagnosticLogger.CreateDebugConsole();
+
+            // Hide debug console by default - can be shown via View menu
+            DiagnosticLogger.HideDebugConsole();
 
             DiagnosticLogger.LogStartupStep("Application starting", $"Arguments: {string.Join(" ", e.Args)}");
             DiagnosticLogger.LogStartupStep("CLR Version", Environment.Version.ToString());
@@ -35,6 +39,11 @@ public partial class App : Application
             base.OnStartup(e);
 
             DiagnosticLogger.LogStartupStep("Base startup completed");
+
+            // Check if we should skip profile selection
+            await HandleStartupFlowAsync(e);
+
+            DiagnosticLogger.LogStartupStep("Startup flow completed");
         }
         catch (Exception ex)
         {
@@ -73,6 +82,51 @@ public partial class App : Application
         DiagnosticLogger.LogStartupStep("Application exiting", $"Exit code: {e.ApplicationExitCode}");
         DiagnosticLogger.Shutdown();
         base.OnExit(e);
+    }
+
+    /// <summary>
+    /// Handle the startup flow - decide whether to show profile selection or go directly to main window
+    /// </summary>
+    private async Task HandleStartupFlowAsync(StartupEventArgs e)
+    {
+        try
+        {
+            DiagnosticLogger.LogStartupStep("Checking startup flow requirements");
+
+            using var profileService = new ProfileSelectionService();
+
+            // Check if we should skip profile selection
+            bool shouldSkip = await profileService.ShouldSkipProfileSelectionAsync();
+
+            if (shouldSkip)
+            {
+                DiagnosticLogger.LogStartupStep("Skipping profile selection - launching main browser directly");
+
+                // Launch main browser window directly
+                var mainWindow = new MainWindow();
+                MainWindow = mainWindow;
+                mainWindow.Show();
+            }
+            else
+            {
+                DiagnosticLogger.LogStartupStep("Showing profile selection window");
+
+                // Show profile selection window
+                var profileWindow = new ProfileSelectionWindow();
+                MainWindow = profileWindow;
+                profileWindow.Show();
+            }
+        }
+        catch (Exception ex)
+        {
+            DiagnosticLogger.LogError("App", "Error in startup flow", ex);
+
+            // Fallback to main window if there's an error
+            DiagnosticLogger.LogStartupStep("Startup flow error - falling back to main window");
+            var mainWindow = new MainWindow();
+            MainWindow = mainWindow;
+            mainWindow.Show();
+        }
     }
 }
 

@@ -161,73 +161,42 @@
                         </StackPanel>
                     </materialDesign:Card>
 
-                    <!-- Content Filtering Section -->
+                    <!-- Content Filtering Information -->
                     <materialDesign:Card Margin="0,0,0,16" Padding="16">
                         <StackPanel>
-                            <TextBlock Text="Content Filtering" FontSize="18" FontWeight="Bold" 
+                            <TextBlock Text="Content Filtering" FontSize="18" FontWeight="Bold"
                                      Foreground="{StaticResource IslamicDarkGreenBrush}" Margin="0,0,0,12"/>
-                            
-                            <CheckBox x:Name="EnableProfanityFilterCheckBox" Content="Enable profanity filtering"
-                                    Style="{StaticResource IslamicCheckBoxStyle}" IsChecked="True"/>
-                            <CheckBox x:Name="EnableNsfwFilterCheckBox" Content="Enable NSFW image filtering"
-                                    Style="{StaticResource IslamicCheckBoxStyle}" IsChecked="True"/>
-                            <CheckBox x:Name="EnableAdBlockerCheckBox" Content="Enable ad and tracker blocking"
-                                    Style="{StaticResource IslamicCheckBoxStyle}" IsChecked="True"/>
-                            <CheckBox x:Name="EnableSafeSearchCheckBox" Content="Enforce SafeSearch on search engines"
-                                    Style="{StaticResource IslamicCheckBoxStyle}" IsChecked="True"/>
+
+                            <TextBlock Text="Content filtering settings are managed in the Companion app."
+                                     FontSize="14" Foreground="Gray" Margin="0,0,0,8"/>
+                            <TextBlock Text="Current profile filtering settings are applied automatically."
+                                     FontSize="12" Foreground="Gray"/>
                         </StackPanel>
                     </materialDesign:Card>
 
-                    <!-- Time Management Section -->
+                    <!-- Time Management Information -->
                     <materialDesign:Card Margin="0,0,0,16" Padding="16">
                         <StackPanel>
-                            <TextBlock Text="Time Management" FontSize="18" FontWeight="Bold" 
+                            <TextBlock Text="Time Management" FontSize="18" FontWeight="Bold"
                                      Foreground="{StaticResource IslamicDarkGreenBrush}" Margin="0,0,0,12"/>
-                            
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <StackPanel Grid.Column="0" Margin="0,0,8,0">
-                                    <TextBox x:Name="DailyTimeLimitTextBox" Style="{StaticResource IslamicTextBoxStyle}"
-                                           materialDesign:HintAssist.Hint="Daily time limit (minutes, 0 = no limit)"/>
-                                    <TextBox x:Name="AllowedStartTimeTextBox" Style="{StaticResource IslamicTextBoxStyle}"
-                                           materialDesign:HintAssist.Hint="Allowed start time (HH:MM, optional)"/>
-                                </StackPanel>
 
-                                <StackPanel Grid.Column="1" Margin="8,0,0,0">
-                                    <TextBox x:Name="AllowedEndTimeTextBox" Style="{StaticResource IslamicTextBoxStyle}"
-                                           materialDesign:HintAssist.Hint="Allowed end time (HH:MM, optional)"/>
-                                </StackPanel>
-                            </Grid>
+                            <TextBlock Text="Time management settings are configured in the Companion app."
+                                     FontSize="14" Foreground="Gray" Margin="0,0,0,8"/>
+                            <TextBlock Text="Current profile time restrictions are applied automatically."
+                                     FontSize="12" Foreground="Gray"/>
                         </StackPanel>
                     </materialDesign:Card>
 
-                    <!-- Prayer Time Settings Section -->
+                    <!-- Prayer Time Information -->
                     <materialDesign:Card Margin="0,0,0,16" Padding="16">
                         <StackPanel>
-                            <TextBlock Text="Prayer Time Settings" FontSize="18" FontWeight="Bold" 
+                            <TextBlock Text="Prayer Time Settings" FontSize="18" FontWeight="Bold"
                                      Foreground="{StaticResource IslamicDarkGreenBrush}" Margin="0,0,0,12"/>
-                            
-                            <CheckBox x:Name="EnableAzanBlockingCheckBox" Content="Block browsing during Azan (prayer time)"
-                                    Style="{StaticResource IslamicCheckBoxStyle}" IsChecked="True"/>
-                            
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <TextBox x:Name="CityTextBox" Grid.Column="0" Style="{StaticResource IslamicTextBoxStyle}"
-                                       materialDesign:HintAssist.Hint="City" Margin="0,0,8,0"/>
-                                <ComboBox x:Name="CountryComboBox" Grid.Column="1" Style="{StaticResource IslamicComboBoxStyle}"
-                                        materialDesign:HintAssist.Hint="Country" Margin="8,0,8,0"/>
-                                <TextBox x:Name="AzanDurationTextBox" Grid.Column="2" Style="{StaticResource IslamicTextBoxStyle}"
-                                       materialDesign:HintAssist.Hint="Duration (min)" Width="120" Text="10"/>
-                            </Grid>
+
+                            <TextBlock Text="Prayer time settings are configured in the Companion app."
+                                     FontSize="14" Foreground="Gray" Margin="0,0,0,8"/>
+                            <TextBlock Text="Prayer time blocking and notifications are managed automatically."
+                                     FontSize="12" Foreground="Gray"/>
                         </StackPanel>
                     </materialDesign:Card>
                 </StackPanel>

@@ -26,55 +26,15 @@ public partial class SettingsWindow : Window
         _hasExistingPin = !string.IsNullOrEmpty(_currentProfile.EncryptedPin);
         
         LoadSettings();
-        PopulateCountryComboBox();
     }
 
     private void LoadSettings()
     {
-        // Load PIN settings
+        // Load PIN settings only - all other settings are managed in Companion app
         RequirePinForSettingsCheckBox.IsChecked = _currentProfile.RequirePinForSettings;
-        
-        // Load content filtering settings
-        EnableProfanityFilterCheckBox.IsChecked = _currentProfile.EnableProfanityFilter;
-        EnableNsfwFilterCheckBox.IsChecked = _currentProfile.EnableNsfwFilter;
-        EnableAdBlockerCheckBox.IsChecked = _currentProfile.EnableAdBlocker;
-        EnableSafeSearchCheckBox.IsChecked = _currentProfile.EnableSafeSearch;
-        
-        // Load time management settings
-        DailyTimeLimitTextBox.Text = _currentProfile.DailyTimeLimitMinutes.ToString();
-
-        if (_currentProfile.AllowedStartTime.HasValue)
-        {
-            AllowedStartTimeTextBox.Text = _currentProfile.AllowedStartTime.Value.ToString(@"hh\:mm");
-        }
-
-        if (_currentProfile.AllowedEndTime.HasValue)
-        {
-            AllowedEndTimeTextBox.Text = _currentProfile.AllowedEndTime.Value.ToString(@"hh\:mm");
-        }
-        
-        // Load prayer time settings
-        EnableAzanBlockingCheckBox.IsChecked = _currentProfile.EnableAzanBlocking;
-        CityTextBox.Text = _currentProfile.City ?? "";
-        CountryComboBox.Text = _currentProfile.Country ?? "US";
-        AzanDurationTextBox.Text = _currentProfile.AzanBlockingDurationMinutes.ToString();
     }
 
-    private void PopulateCountryComboBox()
-    {
-        var countries = new[]
-        {
-            "US", "CA", "GB", "AU", "DE", "FR", "IT", "ES", "NL", "BE", "CH", "AT", "SE", "NO", "DK", "FI",
-            "SA", "AE", "QA", "KW", "BH", "OM", "JO", "LB", "SY", "IQ", "IR", "AF", "PK", "BD", "IN",
-            "MY", "ID", "SG", "TH", "PH", "VN", "KR", "JP", "CN", "HK", "TW", "TR", "EG", "MA", "TN",
-            "DZ", "LY", "SD", "ET", "KE", "TZ", "UG", "ZA", "NG", "GH", "SN", "ML", "BF", "NE", "TD"
-        };
-        
-        foreach (var country in countries)
-        {
-            CountryComboBox.Items.Add(country);
-        }
-    }
+
 
     private void SetPin_Click(object sender, RoutedEventArgs e)
     {
@@ -147,78 +107,9 @@ public partial class SettingsWindow : Window
     {
         try
         {
-            // Validate time limit input
-            if (!int.TryParse(DailyTimeLimitTextBox.Text, out int timeLimit) || timeLimit < 0)
-            {
-                MessageBox.Show("Please enter a valid daily time limit (0 or positive number).", 
-                              "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            // Validate Azan duration input
-            if (!int.TryParse(AzanDurationTextBox.Text, out int azanDuration) || azanDuration < 1)
-            {
-                MessageBox.Show("Please enter a valid Azan blocking duration (1 or more minutes).", 
-                              "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            // Update profile settings
+            // Update only PIN settings - all other settings are managed in Companion app
             _currentProfile.RequirePinForSettings = RequirePinForSettingsCheckBox.IsChecked ?? true;
-            
-            // Content filtering
-            _currentProfile.EnableProfanityFilter = EnableProfanityFilterCheckBox.IsChecked ?? true;
-            _currentProfile.EnableNsfwFilter = EnableNsfwFilterCheckBox.IsChecked ?? true;
-            _currentProfile.EnableAdBlocker = EnableAdBlockerCheckBox.IsChecked ?? true;
-            _currentProfile.EnableSafeSearch = EnableSafeSearchCheckBox.IsChecked ?? true;
-            
-            // Time management
-            _currentProfile.DailyTimeLimitMinutes = timeLimit;
 
-            // Parse start time
-            if (!string.IsNullOrWhiteSpace(AllowedStartTimeTextBox.Text))
-            {
-                if (TimeSpan.TryParse(AllowedStartTimeTextBox.Text, out TimeSpan startTime))
-                {
-                    _currentProfile.AllowedStartTime = startTime;
-                }
-                else
-                {
-                    MessageBox.Show("Please enter a valid start time in HH:MM format.",
-                                  "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-            }
-            else
-            {
-                _currentProfile.AllowedStartTime = null;
-            }
-
-            // Parse end time
-            if (!string.IsNullOrWhiteSpace(AllowedEndTimeTextBox.Text))
-            {
-                if (TimeSpan.TryParse(AllowedEndTimeTextBox.Text, out TimeSpan endTime))
-                {
-                    _currentProfile.AllowedEndTime = endTime;
-                }
-                else
-                {
-                    MessageBox.Show("Please enter a valid end time in HH:MM format.",
-                                  "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-            }
-            else
-            {
-                _currentProfile.AllowedEndTime = null;
-            }
-            
-            // Prayer time settings
-            _currentProfile.EnableAzanBlocking = EnableAzanBlockingCheckBox.IsChecked ?? true;
-            _currentProfile.City = string.IsNullOrWhiteSpace(CityTextBox.Text) ? null : CityTextBox.Text.Trim();
-            _currentProfile.Country = string.IsNullOrWhiteSpace(CountryComboBox.Text) ? "US" : CountryComboBox.Text.Trim();
-            _currentProfile.AzanBlockingDurationMinutes = azanDuration;
-            
             // Update timestamp
             _currentProfile.UpdatedAt = DateTime.UtcNow;
 
@@ -226,15 +117,15 @@ public partial class SettingsWindow : Window
             _context.UserProfiles.Update(_currentProfile);
             await _context.SaveChangesAsync();
 
-            MessageBox.Show("Settings saved successfully!", "Success", 
+            MessageBox.Show("PIN settings saved successfully!", "Success",
                           MessageBoxButton.OK, MessageBoxImage.Information);
-            
+
             DialogResult = true;
             Close();
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error saving settings: {ex.Message}", "Error", 
+            MessageBox.Show($"Error saving settings: {ex.Message}", "Error",
                           MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }

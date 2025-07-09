@@ -462,13 +462,7 @@
 
             <!-- Monitoring Tab -->
             <TabItem Header="📊 Monitoring" Style="{StaticResource ModernTabItemStyle}">
-                <Grid>
-                    <TextBlock Text="Monitoring Dashboard - Coming Soon" 
-                              FontSize="18" 
-                              Foreground="White" 
-                              HorizontalAlignment="Center" 
-                              VerticalAlignment="Center"/>
-                </Grid>
+                <ContentPresenter x:Name="MonitoringContentPresenter" Margin="10"/>
             </TabItem>
 
             <!-- Settings Tab -->

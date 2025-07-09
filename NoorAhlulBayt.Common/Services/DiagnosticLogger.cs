@@ -115,7 +115,82 @@ public static class DiagnosticLogger
     [System.Runtime.InteropServices.DllImport("kernel32.dll")]
     private static extern bool SetConsoleTitle(string lpConsoleTitle);
 
-    public static void LogDebug(string source, string message, 
+    [System.Runtime.InteropServices.DllImport("kernel32.dll")]
+    private static extern bool FreeConsole();
+
+    [System.Runtime.InteropServices.DllImport("kernel32.dll")]
+    private static extern IntPtr GetConsoleWindow();
+
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+    private const int SW_HIDE = 0;
+    private const int SW_SHOW = 5;
+
+    /// <summary>
+    /// Check if the debug console is currently visible
+    /// </summary>
+    public static bool IsConsoleVisible()
+    {
+        if (!_consoleWindowCreated) return false;
+
+        try
+        {
+            IntPtr consoleWindow = GetConsoleWindow();
+            return consoleWindow != IntPtr.Zero;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Show the debug console window
+    /// </summary>
+    public static void ShowDebugConsole()
+    {
+        try
+        {
+            if (!_consoleWindowCreated)
+            {
+                CreateDebugConsole();
+            }
+            else
+            {
+                IntPtr consoleWindow = GetConsoleWindow();
+                if (consoleWindow != IntPtr.Zero)
+                {
+                    ShowWindow(consoleWindow, SW_SHOW);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            LogError("DiagnosticLogger", $"Failed to show debug console: {ex.Message}", ex);
+        }
+    }
+
+    /// <summary>
+    /// Hide the debug console window
+    /// </summary>
+    public static void HideDebugConsole()
+    {
+        try
+        {
+            IntPtr consoleWindow = GetConsoleWindow();
+            if (consoleWindow != IntPtr.Zero)
+            {
+                ShowWindow(consoleWindow, SW_HIDE);
+            }
+        }
+        catch (Exception ex)
+        {
+            LogError("DiagnosticLogger", $"Failed to hide debug console: {ex.Message}", ex);
+        }
+    }
+
+    public static void LogDebug(string source, string message,
         [CallerMemberName] string memberName = "",
         [CallerFilePath] string filePath = "",
         [CallerLineNumber] int lineNumber = 0)

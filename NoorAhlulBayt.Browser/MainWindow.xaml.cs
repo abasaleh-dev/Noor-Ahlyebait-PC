@@ -34,11 +34,13 @@ public partial class MainWindow : Window
     private readonly TimeTrackingService _timeTrackingService;
     private readonly BookmarkService _bookmarkService;
     private readonly HistoryService _historyService;
+    private readonly SettingsService _settingsService;
     private readonly HttpClient _httpClient;
     private readonly System.Timers.Timer _prayerTimer;
     private readonly System.Timers.Timer _timeUpdateTimer;
     private UserProfile? _currentProfile;
     private Settings? _appSettings;
+    private ApplicationSettings? _applicationSettings;
     private string _homeUrl = "https://www.google.com";
     private bool _isIncognitoMode = false;
     private bool _navigationBlockedByFilter = false;
@@ -63,11 +65,11 @@ public partial class MainWindow : Window
             _httpClient = new HttpClient();
             DiagnosticLogger.LogStartupStep("HttpClient initialized");
 
-            // Configure DbContext with SQLite
+            // Configure DbContext with SQLite - Use shared database path
             DiagnosticLogger.LogStartupStep("Configuring database context");
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            var dbPath = "Data Source=noor_browser.db";
-            optionsBuilder.UseSqlite(dbPath);
+            var dbPath = GetSharedDatabasePath();
+            optionsBuilder.UseSqlite($"Data Source={dbPath}");
             _context = new ApplicationDbContext(optionsBuilder.Options);
             DiagnosticLogger.LogStartupStep("Database context configured", $"Connection: {dbPath}");
 
@@ -108,8 +110,12 @@ public partial class MainWindow : Window
             _contentFilter = new ContentFilterService(File.Exists(nsfwModelPath) ? nsfwModelPath : null);
             DiagnosticLogger.LogStartupStep("ContentFilterService initialized", $"NSFW Model: {(File.Exists(nsfwModelPath) ? "Loaded" : "Not found - REDUCED SAFETY MODE")}");
 
+            DiagnosticLogger.LogStartupStep("Initializing SettingsService");
+            _settingsService = new SettingsService();
+            DiagnosticLogger.LogStartupStep("SettingsService initialized");
+
             DiagnosticLogger.LogStartupStep("Initializing PrayerTimeService");
-            _prayerTimeService = new PrayerTimeService(_httpClient, _context);
+            _prayerTimeService = new PrayerTimeService(_httpClient, _context, _settingsService);
             DiagnosticLogger.LogStartupStep("PrayerTimeService initialized");
 
             DiagnosticLogger.LogStartupStep("Initializing WebViewContentFilterService");
@@ -289,9 +295,12 @@ public partial class MainWindow : Window
             .FirstOrDefaultAsync(p => p.IsDefault) ??
             new UserProfile { Name = "Default", IsDefault = true };
 
-        // Load app settings
+        // Load app settings (legacy database settings)
         _appSettings = await _context.Settings.FirstOrDefaultAsync() ??
             new Settings();
+
+        // Load application settings (JSON-based settings from Companion app)
+        _applicationSettings = _settingsService.GetSettings();
 
         // Set home URL - using Google as default since no DefaultHomePage property exists
         _homeUrl = "https://www.google.com";
@@ -690,20 +699,27 @@ public partial class MainWindow : Window
                 }
             }
 
-            // Check if it's prayer time and blocking is enabled
-            if (_currentProfile?.EnableAzanBlocking == true && !string.IsNullOrEmpty(_currentProfile.City))
+            // Check if it's prayer time and blocking is enabled (using settings from Companion app)
+            if (_currentProfile?.EnableAzanBlocking == true)
             {
-                DiagnosticLogger.LogWebView2Event("ContentFilter", "Checking prayer time blocking");
-                var isAzanTime = await _prayerTimeService.IsCurrentlyAzanTimeAsync(
-                    _currentProfile.City, _currentProfile.Country ?? "US",
-                    _currentProfile.AzanBlockingDurationMinutes);
+                // Refresh application settings to get latest prayer time configuration
+                _applicationSettings = _settingsService.GetSettings();
+                var location = _applicationSettings?.PrayerTimes?.Location;
 
-                if (isAzanTime)
+                if (location != null && !string.IsNullOrEmpty(location.City) && !string.IsNullOrEmpty(location.Country))
                 {
-                    e.Cancel = true;
-                    DiagnosticLogger.LogWebView2Event("ContentFilter", "Navigation blocked - prayer time");
-                    BlockContent("Prayer Time", "Browsing is blocked during Azan. Please take time for prayer.");
-                    return;
+                    DiagnosticLogger.LogWebView2Event("ContentFilter", "Checking prayer time blocking");
+                    var isAzanTime = await _prayerTimeService.IsCurrentlyAzanTimeAsync(
+                        location.City, location.Country,
+                        _currentProfile.AzanBlockingDurationMinutes);
+
+                    if (isAzanTime)
+                    {
+                        e.Cancel = true;
+                        DiagnosticLogger.LogWebView2Event("ContentFilter", "Navigation blocked - prayer time");
+                        BlockContent("Prayer Time", "Browsing is blocked during Azan. Please take time for prayer.");
+                        return;
+                    }
                 }
             }
 
@@ -966,18 +982,23 @@ public partial class MainWindow : Window
     {
         try
         {
-            if (_currentProfile == null || string.IsNullOrEmpty(_currentProfile.City))
+            // Refresh application settings to get latest prayer time configuration from Companion app
+            _applicationSettings = _settingsService.GetSettings();
+
+            // Check if prayer time settings are configured in the Companion app
+            var location = _applicationSettings?.PrayerTimes?.Location;
+            if (location == null || string.IsNullOrEmpty(location.City) || string.IsNullOrEmpty(location.Country))
             {
-                Dispatcher.Invoke(() => NextPrayerText.Text = "Prayer times not set");
+                Dispatcher.Invoke(() => NextPrayerText.Text = "Configure prayer times in Companion app");
                 return;
             }
 
-            var nextPrayer = await _prayerTimeService.GetNextPrayerAsync(
-                _currentProfile.City, _currentProfile.Country ?? "US");
+            // Get next prayer using the new PrayerTimeService method that uses SettingsService
+            var nextPrayer = await _prayerTimeService.GetNextPrayerAsync();
 
             if (nextPrayer.HasValue)
             {
-                var timeUntil = nextPrayer.Value.Time - DateTime.Now.TimeOfDay;
+                var timeUntil = nextPrayer.Value.TimeUntil;
                 if (timeUntil.TotalSeconds < 0)
                     timeUntil = timeUntil.Add(TimeSpan.FromDays(1));
 
@@ -1546,6 +1567,33 @@ public partial class MainWindow : Window
         }
     }
 
+    private void ToggleDebugConsole_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            bool isVisible = DiagnosticLogger.IsConsoleVisible();
+
+            if (isVisible)
+            {
+                DiagnosticLogger.HideDebugConsole();
+                DebugConsoleMenuItem.Header = "Show _Debug Console";
+                DiagnosticLogger.LogStartupStep("Debug console hidden by user");
+            }
+            else
+            {
+                DiagnosticLogger.ShowDebugConsole();
+                DebugConsoleMenuItem.Header = "Hide _Debug Console";
+                DiagnosticLogger.LogStartupStep("Debug console shown by user");
+            }
+        }
+        catch (Exception ex)
+        {
+            DiagnosticLogger.LogError("MainWindow", "Error toggling debug console", ex);
+            MessageBox.Show($"Error toggling debug console: {ex.Message}", "Error",
+                          MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+    }
+
     private async void Bookmarks_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -1694,9 +1742,8 @@ public partial class MainWindow : Window
     // Islamic Menu
     private void PrayerTimes_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Open prayer times window
-        MessageBox.Show("Prayer times window not yet implemented.", "Prayer Times",
-                      MessageBoxButton.OK, MessageBoxImage.Information);
+        MessageBox.Show("Prayer times are configured in the Companion app.\n\nPlease use the Companion app to set your location and prayer time preferences.",
+                      "Prayer Times", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
     private void QiblaDirection_Click(object sender, RoutedEventArgs e)
@@ -1922,6 +1969,19 @@ public partial class MainWindow : Window
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
         this.Close();
+    }
+
+    /// <summary>
+    /// Get the shared database path used by both Companion and Browser applications
+    /// </summary>
+    private static string GetSharedDatabasePath()
+    {
+        // Use a shared location that both applications can access
+        var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        var appFolder = System.IO.Path.Combine(appDataPath, "NoorAhlulBayt");
+        Directory.CreateDirectory(appFolder);
+
+        return System.IO.Path.Combine(appFolder, "noor_family_browser.db");
     }
 
     #endregion
