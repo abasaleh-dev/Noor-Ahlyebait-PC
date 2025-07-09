@@ -12,18 +12,66 @@ public class AzanService : IDisposable
 {
     private SoundPlayer? _soundPlayer;
     private Process? _mediaProcess;
-    private readonly string _azanFolderPath;
+    private string _azanFolderPath;
     private bool _disposed = false;
 
     public AzanService()
     {
-        // Set up Azan folder path
-        var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        var companionDataPath = Path.Combine(appDataPath, "NoorAhlulBayt", "Companion");
-        _azanFolderPath = Path.Combine(companionDataPath, "Azan");
+        // Try multiple possible locations for the Azan folder
+        var possiblePaths = new[]
+        {
+            // 1. Application directory
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Azan"),
 
-        // Ensure directory exists
-        Directory.CreateDirectory(_azanFolderPath);
+            // 2. Companion project folder (for development)
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "NoorAhlulBayt.Companion", "Azan"),
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "NoorAhlulBayt.Companion", "Azan"),
+
+            // 3. Solution root (for development)
+            Path.Combine(Directory.GetCurrentDirectory(), "NoorAhlulBayt.Companion", "Azan"),
+
+            // 4. AppData fallback
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NoorAhlulBayt", "Companion", "Azan")
+        };
+
+        // Find the first existing path
+        foreach (var path in possiblePaths)
+        {
+            var fullPath = Path.GetFullPath(path);
+            Console.WriteLine($"Checking Azan path: {fullPath}");
+
+            if (Directory.Exists(fullPath))
+            {
+                _azanFolderPath = fullPath;
+                Console.WriteLine($"✅ Found Azan folder: {_azanFolderPath}");
+                break;
+            }
+        }
+
+        // If no existing folder found, use the first option and create it
+        if (string.IsNullOrEmpty(_azanFolderPath))
+        {
+            _azanFolderPath = Path.GetFullPath(possiblePaths[0]);
+            Console.WriteLine($"Creating new Azan folder: {_azanFolderPath}");
+            Directory.CreateDirectory(_azanFolderPath);
+        }
+
+        Console.WriteLine($"AzanService initialized with path: {_azanFolderPath}");
+
+        // List available files for debugging
+        if (Directory.Exists(_azanFolderPath))
+        {
+            var files = Directory.GetFiles(_azanFolderPath, "*.*")
+                .Where(f => f.EndsWith(".wav", StringComparison.OrdinalIgnoreCase) ||
+                           f.EndsWith(".mp3", StringComparison.OrdinalIgnoreCase))
+                .ToArray();
+
+            Console.WriteLine($"Available Azan files ({files.Length}):");
+            foreach (var file in files)
+            {
+                Console.WriteLine($"  🎵 {Path.GetFileName(file)}");
+            }
+        }
     }
 
     /// <summary>
@@ -194,23 +242,71 @@ public class AzanService : IDisposable
 
         try
         {
+            Console.WriteLine($"Looking for Azan file: {fileName} in directory: {_azanFolderPath}");
+
             // Remove extension if provided
             var baseName = Path.GetFileNameWithoutExtension(fileName);
-            
+
             // Try different file name patterns and extensions
             var possibleFiles = new[]
             {
+                // Exact match
                 Path.Combine(_azanFolderPath, $"{baseName}.mp3"),
                 Path.Combine(_azanFolderPath, $"{baseName}.wav"),
                 Path.Combine(_azanFolderPath, $"{fileName}.mp3"),
                 Path.Combine(_azanFolderPath, $"{fileName}.wav"),
+
+                // With prefixes
                 Path.Combine(_azanFolderPath, $"azan_{baseName}.mp3"),
                 Path.Combine(_azanFolderPath, $"azan_{baseName}.wav"),
                 Path.Combine(_azanFolderPath, $"adhan_{baseName}.mp3"),
-                Path.Combine(_azanFolderPath, $"adhan_{baseName}.wav")
+                Path.Combine(_azanFolderPath, $"adhan_{baseName}.wav"),
+
+                // Alternative naming patterns
+                Path.Combine(_azanFolderPath, $"{baseName.Replace("_", "-")}.mp3"),
+                Path.Combine(_azanFolderPath, $"{baseName.Replace("_", "-")}.wav"),
+                Path.Combine(_azanFolderPath, $"{baseName.Replace("-", "_")}.mp3"),
+                Path.Combine(_azanFolderPath, $"{baseName.Replace("-", "_")}.wav")
             };
 
-            return possibleFiles.FirstOrDefault(File.Exists);
+            // Log all files being checked
+            foreach (var file in possibleFiles)
+            {
+                Console.WriteLine($"Checking: {file} - Exists: {File.Exists(file)}");
+                if (File.Exists(file))
+                {
+                    Console.WriteLine($"Found Azan file: {file}");
+                    return file;
+                }
+            }
+
+            // If no exact match, try fuzzy matching
+            if (Directory.Exists(_azanFolderPath))
+            {
+                var allFiles = Directory.GetFiles(_azanFolderPath, "*.wav")
+                    .Concat(Directory.GetFiles(_azanFolderPath, "*.mp3"))
+                    .ToArray();
+
+                Console.WriteLine($"Available files in {_azanFolderPath}:");
+                foreach (var file in allFiles)
+                {
+                    Console.WriteLine($"  - {Path.GetFileName(file)}");
+                }
+
+                // Try fuzzy matching
+                var fuzzyMatch = allFiles.FirstOrDefault(f =>
+                    Path.GetFileNameWithoutExtension(f).ToLower().Contains(baseName.ToLower()) ||
+                    baseName.ToLower().Contains(Path.GetFileNameWithoutExtension(f).ToLower()));
+
+                if (fuzzyMatch != null)
+                {
+                    Console.WriteLine($"Found fuzzy match: {fuzzyMatch}");
+                    return fuzzyMatch;
+                }
+            }
+
+            Console.WriteLine($"No Azan file found for: {fileName}");
+            return null;
         }
         catch (Exception ex)
         {
@@ -294,6 +390,22 @@ public class AzanService : IDisposable
     /// Get the Azan folder path
     /// </summary>
     public string AzanFolderPath => _azanFolderPath;
+
+    /// <summary>
+    /// Set a custom Azan folder path (for testing or manual configuration)
+    /// </summary>
+    public void SetAzanFolderPath(string path)
+    {
+        if (Directory.Exists(path))
+        {
+            _azanFolderPath = path;
+            Console.WriteLine($"Azan folder path updated to: {_azanFolderPath}");
+        }
+        else
+        {
+            Console.WriteLine($"Warning: Azan folder path does not exist: {path}");
+        }
+    }
 
     public void Dispose()
     {
